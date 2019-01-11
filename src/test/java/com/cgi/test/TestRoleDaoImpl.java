@@ -46,7 +46,8 @@ public class TestRoleDaoImpl {
 	public void testFindByKey() {
 		role = new Role();
 		rDao.add(role);
-		assertNotNull(rDao.findByKey(1L));
+		Long id = role.getId();
+		assertNotNull(rDao.findByKey(id));
 	}
 
 	@Test
@@ -63,12 +64,11 @@ public class TestRoleDaoImpl {
 	@Test
 	public void testUpdate() {
 		role = new Role();
-		role.setName("roleTest");
-		rDao.update(role);
-		Role roleTest = rDao.findByKey(1L);
+		rDao.add(role);
+		Role roleTest = rDao.findByKey(role.getId());
 		roleTest.setName("roleModify");
 		rDao.update(roleTest);
-		assertTrue(rDao.findByKey(1L).getName().equals("roleModify"));
+		assertTrue(rDao.findByKey(role.getId()).getName().equals("roleModify"));
 	}
 
 	@Test
@@ -86,7 +86,7 @@ public class TestRoleDaoImpl {
 		role = new Role();
 		int sizeBefore = rDao.findAll().size();
 		rDao.add(role);
-		rDao.deleteByKey(1L);
+		rDao.deleteByKey(role.getId());
 		int sizeAfter = rDao.findAll().size();
 		assertTrue(sizeAfter == sizeBefore);
 	}

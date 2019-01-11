@@ -26,7 +26,6 @@ public class TestUserDaoImpl {
 	@Autowired
 	UserDao uDao;
 	
-	
 	User user;
 	User user1;
 	
@@ -45,7 +44,8 @@ public class TestUserDaoImpl {
 		
 		user = new User();
 		uDao.add(user);
-		assertNotNull(uDao.findByKey(1L));
+		Long id = user.getId();
+		assertNotNull(uDao.findByKey(id));
 	}
 
 	@Test
@@ -64,11 +64,11 @@ public class TestUserDaoImpl {
 		user = new User();
 		user.setFirstName("joe");
 		uDao.add(user);
-		user1 = uDao.findByKey(1L);
+		user1 = uDao.findByKey(user.getId());
 		user1.setFirstName("NameModify");
 		uDao.update(user1);
 		
-		assertTrue(uDao.findByKey(1L).getFirstName().equals("NameModify"));
+		assertTrue(uDao.findByKey(user.getId()).getFirstName().equals("NameModify"));
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class TestUserDaoImpl {
 		user = new User();
 		int sizeBefore = uDao.findAll().size();
 		uDao.add(user);
-		uDao.deleteByKey(1L);
+		uDao.deleteByKey(user.getId());
 		int sizeAfter = uDao.findAll().size();
 		assertTrue(sizeAfter == sizeBefore);
 	}

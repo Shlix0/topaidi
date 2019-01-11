@@ -41,7 +41,8 @@ public class TesttCommentDaoImpl {
 	public void testFindByKey() {
 		com = new Comment();
 		cDao.add(com);
-		assertNotNull(cDao.findByKey(1L));
+		Long id = com.getId();
+		assertNotNull(cDao.findByKey(id));
 		
 	}
 
@@ -59,10 +60,10 @@ public class TesttCommentDaoImpl {
 		com = new Comment();
 		com.setTitle("testing");
 		cDao.add(com);
-		com1 = cDao.findByKey(1L);
+		com1 = cDao.findByKey(com.getId());
 		com1.setTitle("TitleModify");
 		cDao.update(com1);
-		assertTrue(cDao.findByKey(1L).getTitle().equals("TitleModify"));
+		assertTrue(cDao.findByKey(com.getId()).getTitle().equals("TitleModify"));
 
 	}
 
@@ -71,7 +72,7 @@ public class TesttCommentDaoImpl {
 		com = new Comment();
 		int sizeBefore = cDao.findAll().size();
 		cDao.add(com);
-		com = cDao.findByKey(1L);
+		com = cDao.findByKey(com.getId());
 		cDao.delete(com);
 		int sizeAfter = cDao.findAll().size();
 		assertTrue(sizeAfter == sizeBefore);
@@ -82,7 +83,7 @@ public class TesttCommentDaoImpl {
 		com = new Comment();
 		int sizeBefore = cDao.findAll().size();
 		cDao.add(com);
-		cDao.deleteByKey(1L);
+		cDao.deleteByKey(com.getId());
 		int sizeAfter = cDao.findAll().size();
 		assertTrue(sizeAfter == sizeBefore);
 	}

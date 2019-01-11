@@ -38,12 +38,12 @@ public class TestCategoryDaoImpl {
 
 	@Test
 	public void testFindByKey() {
-		Category c = new Category();
-		c.setTitle("test");
+		Category c = new Category("Content", "title");
 		cDao.add(c);
-		Category c2 = cDao.findByKey(1L);
-		assertNotNull(c2.getId());
-		assertTrue(c2.getTitle().equals("test"));
+		Long id = c.getId();
+		c = cDao.findByKey(id);
+		assertNotNull(c.getId());
+		assertTrue(c.getId() == id);
 	}
 
 	@Test
@@ -63,9 +63,10 @@ public class TestCategoryDaoImpl {
 		Category cat = new Category();
 		cat.setTitle("CategoryTest");
 		cDao.add(cat);
+		
 		cat.setTitle("CategoryModified");
 		cDao.update(cat);
-		assertTrue(cDao.findByKey(1L).getTitle().equals("CategoryModified"));
+		assertTrue(cDao.findByKey(cat.getId()).getTitle().equals("CategoryModified"));
 		
 	}
 
@@ -86,7 +87,7 @@ public class TestCategoryDaoImpl {
 		Category cat = new Category();
 		cat.setContent("content");
 		cDao.add(cat);
-		cDao.deleteByKey(1L);
+		cDao.deleteByKey(cat.getId());
 		int sizeAfter = cDao.findAll().size();
 		assertTrue(sizeAfter == sizeBefore);
 	}

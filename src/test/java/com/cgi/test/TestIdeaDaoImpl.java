@@ -49,7 +49,8 @@ public class TestIdeaDaoImpl {
 	public void testFindByKey() {
 		idea = new Idea();
 		iDao.add(idea);
-		assertNotNull(iDao.findByKey(1L));
+		Long id = idea.getId();
+		assertNotNull(iDao.findByKey(id));
 	}
 
 	@Test
@@ -70,10 +71,10 @@ public class TestIdeaDaoImpl {
 		idea = new Idea();
 		idea.setTitle("TitleInit");
 		iDao.add(idea);
-		idea1 = iDao.findByKey(1L);
+		idea1 = iDao.findByKey(idea.getId());
 		idea1.setTitle("TitleTest");
 		iDao.update(idea1);
-		assertTrue(iDao.findByKey(1L).getTitle().equals("TitleTest"));
+		assertTrue(iDao.findByKey(idea.getId()).getTitle().equals("TitleTest"));
 		
 		
 	}
@@ -97,7 +98,7 @@ public class TestIdeaDaoImpl {
 		int sizeBefore = iDao.findAll().size();
 		idea.setTitle("TitleTest");
 		iDao.add(idea);
-		iDao.deleteByKey(1L);;
+		iDao.deleteByKey(idea.getId());;
 		int sizeAfter = iDao.findAll().size();
 		assertTrue(sizeAfter == sizeBefore);
 		

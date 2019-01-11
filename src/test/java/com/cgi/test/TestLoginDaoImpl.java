@@ -44,7 +44,8 @@ public class TestLoginDaoImpl {
 	public void testFindByKey() {
 		log = new Login();
 		lDao.add(log);
-		assertNotNull(lDao.findByKey(1L));
+		Long id = log.getId();
+		assertNotNull(lDao.findByKey(id));
 	}
 
 	@Test
@@ -63,10 +64,10 @@ public class TestLoginDaoImpl {
 		log = new Login();
 		log.setMail("LogMail");
 		lDao.add(log);
-		log1 = lDao.findByKey(1L);
+		log1 = lDao.findByKey(log.getId());
 		log1.setMail("MailModify");
 		lDao.update(log1);
-		assertTrue(lDao.findByKey(1L).getMail().equals("MailModify"));
+		assertTrue(lDao.findByKey(log.getId()).getMail().equals("MailModify"));
 		
 	}
 
@@ -85,7 +86,7 @@ public class TestLoginDaoImpl {
 		log = new Login();
 		int sizeBefore = lDao.findAll().size();
 		lDao.add(log);
-		lDao.deleteByKey(1L);
+		lDao.deleteByKey(log.getId());
 		int sizeAfter = lDao.findAll().size();
 		assertTrue(sizeAfter == sizeBefore);
 	}
