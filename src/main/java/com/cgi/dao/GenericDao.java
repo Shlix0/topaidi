@@ -8,7 +8,6 @@ public interface GenericDao <T, K>  {
     
     T findByKey(K key);
     
-    
     void add(T obj);
     
     T update(T obj);

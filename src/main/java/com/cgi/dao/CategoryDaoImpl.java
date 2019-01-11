@@ -1,47 +1,52 @@
 package com.cgi.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
 
 import com.cgi.model.Category;
 
+@Repository
+@Transactional
 public class CategoryDaoImpl implements CategoryDao {
 
+	@PersistenceContext
+	EntityManager em;
+	
 	@Override
 	public List<Category> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("from Category c").getResultList();
 	}
 
 	@Override
-	public Category findByKey(Long key) {
-		// TODO Auto-generated method stub
-		return null;
+	public Category findByKey(Long id) {
+		return em.find(Category.class, id);
 	}
 
 	@Override
-	public void add(Category obj) {
-		// TODO Auto-generated method stub
-		
+	public void add(Category category) {
+		em.persist(category);
 	}
 
 	@Override
-	public Category update(Category obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public Category update(Category category) {
+		em.merge(category);
+		return category;
 	}
 
 	@Override
-	public void delete(Category obj) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Category category) {
+		Category eMerged = em.merge(category);
+		em.remove(eMerged);
 	}
 
 	@Override
-	public void deleteByKey(Long key) {
-		// TODO Auto-generated method stub
-		
+	public void deleteByKey(Long id) {
+		Category category = em.find(Category.class, id);
+		em.remove(category);
 	}
-
 }

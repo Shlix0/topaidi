@@ -2,45 +2,51 @@ package com.cgi.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
 
 import com.cgi.model.Login;
 
+@Repository
+@Transactional
 public class LoginDaoImpl implements LoginDao {
 
+	@PersistenceContext
+	EntityManager em;
+	
 	@Override
 	public List<Login> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("from Login l").getResultList();
 	}
 
 	@Override
-	public Login findByKey(Long key) {
-		// TODO Auto-generated method stub
-		return null;
+	public Login findByKey(Long id) {
+		return em.find(Login.class, id);
 	}
 
 	@Override
-	public void add(Login obj) {
-		// TODO Auto-generated method stub
-		
+	public void add(Login login) {
+		em.persist(login);		
 	}
 
 	@Override
-	public Login update(Login obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public Login update(Login login) {
+		em.merge(login);
+		return login;
 	}
 
 	@Override
-	public void delete(Login obj) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Login login) {
+		Login eMerged = em.merge(login);
+		em.remove(eMerged);
 	}
 
 	@Override
-	public void deleteByKey(Long key) {
-		// TODO Auto-generated method stub
-		
+	public void deleteByKey(Long id) {
+		Login login = em.find(Login.class, id);
+		em.remove(login);
 	}
-
 }

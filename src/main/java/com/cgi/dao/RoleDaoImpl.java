@@ -1,49 +1,53 @@
 package com.cgi.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
 
 import com.cgi.model.Role;
 
+@Repository
+@Transactional
 public class RoleDaoImpl implements RoleDao {
 
+	@PersistenceContext
+	EntityManager em;
+	
 	@Override
 	public List<Role> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("from Role r").getResultList();
 	}
 
 	@Override
-	public Role findByKey(Long key) {
-		// TODO Auto-generated method stub
-		return null;
+	public Role findByKey(Long id) {
+		return em.find(Role.class, id);
 	}
 
 	@Override
-	public void add(Role obj) {
-		// TODO Auto-generated method stub
-		
+	public void add(Role role) {
+		em.persist(role);
 	}
 
 	@Override
-	public Role update(Role obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public Role update(Role role) {
+		em.merge(role);
+		return role;
 	}
 
 	@Override
-	public void delete(Role obj) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Role role) {
+		Role eMerged = em.merge(role);
+		em.remove(eMerged);
 	}
 
 	@Override
-	public void deleteByKey(Long key) {
-		// TODO Auto-generated method stub
-		
+	public void deleteByKey(Long id) {
+		Role role = em.find(Role.class, id);
+		em.remove(role);
 	}
 
 }
