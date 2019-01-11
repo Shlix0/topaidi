@@ -1,7 +1,7 @@
 # Eclipse related
 .project
 .settings
-
+.classpath
 # Compiled class file
 target/
 bin/
