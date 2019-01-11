@@ -28,8 +28,9 @@ public class RoleDaoImpl implements RoleDao {
 	}
 
 	@Override
-	public void add(Role role) {
+	public Role add(Role role) {
 		em.persist(role);
+		return role;
 	}
 
 	@Override

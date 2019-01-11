@@ -28,8 +28,9 @@ public class CommentDaoImpl implements CommentDao {
 	}
 
 	@Override
-	public void add(Comment comment) {
+	public Comment add(Comment comment) {
 		em.persist(comment);
+		return comment;
 	}
 
 	@Override

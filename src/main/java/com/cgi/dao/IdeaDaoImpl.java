@@ -30,8 +30,9 @@ public class IdeaDaoImpl implements IdeaDao {
 	}
 
 	@Override
-	public void add(Idea idea) {
+	public Idea add(Idea idea) {
 		em.persist(idea);
+		return idea;
 	}
 
 	@Override
@@ -53,8 +54,9 @@ public class IdeaDaoImpl implements IdeaDao {
 	}
 
 	@Override
-	public List<Idea> findAllIdeaByCategory(Long id) {
-//		return em.createQuery("SELECT * FROM Idea i WHERE Category").
-		return null;
+	public List<Idea> findAllIdeaByCategory(Long key) {
+		 List<Idea> idea = new ArrayList<Idea>();
+		 idea = (ArrayList)em.createQuery("SELECT * FROM Idea i WHERE i.category.id = :key").setParameter("key", key);
+		 return idea;
 	}
 }

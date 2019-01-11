@@ -28,8 +28,9 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
-	public void add(Category category) {
+	public Category add(Category category) {
 		em.persist(category);
+		return category;
 	}
 
 	@Override

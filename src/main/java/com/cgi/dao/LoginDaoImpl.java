@@ -28,8 +28,9 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public void add(Login login) {
-		em.persist(login);		
+	public Login add(Login login) {
+		em.persist(login);	
+		return login;
 	}
 
 	@Override
