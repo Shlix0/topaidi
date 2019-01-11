@@ -1,105 +1,98 @@
-//package com.cgi.test;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import javax.persistence.EntityManager;
-//import javax.persistence.EntityManagerFactory;
-//
-//import org.junit.Before;
-//import org.junit.Test;
-//
-//import com.cgi.dao.UserDaoImpl;
-//import com.cgi.model.User;
-//import com.cgi.utils.ContextDB;
-//
-//public class TestUserDaoImpl {
-//	EntityManagerFactory emf = null;
-//	UserDaoImpl uDaoI = new UserDaoImpl();
-//	User user;
-//	User user1;
-//	User user2;
-//	User user3;
-//	
-//	
-//	@Before
-//	public void init() {
-//		ContextDB.stop();
-//		EntityManager em = ContextDB.getInstance().getEmf().createEntityManager();
-//		
-//		User user1 = new User();
-//		User user2 = new User();
-//		User user3 = new User();
-//		
-//		em.getTransaction().begin();
-//		
-//		em.persist(user1);
-//		em.persist(user2);
-//		em.persist(user3);
-//		
-//		em.getTransaction().commit();
-//	}
-//	
-////	@After
-////	public void finish() {
-////		ContextDB.stop();
-////		
-////	}
-//	
-//	
-//	@Test
-//	public void testFindAll() {
-//
-//	 List<User> users = new ArrayList<User>();
-//	 
-//	 users = uDaoI.findAll();
-//	 
-//	 org.junit.Assert.assertTrue("fail to findAll", users.size() == 3);
-//	}
-//
-//	@Test
-//	public void testFindByKey() {
-//		
-//		user = uDaoI.findByKey(1L);
-//		 org.junit.Assert.assertTrue("fail to find by key", user != null);
-//	}
-//
-//	@Test
-//	public void testAdd() {
-//		
-//		user = new User();
-//		int sizeBefore = uDaoI.findAll().size();
-//		uDaoI.add(user);
-//		int sizeAfter = uDaoI.findAll().size();
-//		
-//		 org.junit.Assert.assertTrue("fail to add a User",sizeAfter == sizeBefore+1);
-//	}
-//
-//	@Test
-//	public void testUpdate() {
-//		
-//		user = uDaoI.findByKey(2L);
-//		user.setFirstName("joe");
-//		uDaoI.update(user);
-//		User userT = uDaoI.findByKey(2L);
-//		
-//		org.junit.Assert.assertTrue("fail to add a User", userT.getFirstName().equals("joe"));
-//		
-//	}
-//
-//	@Test
-//	public void testDelete() {
-//		
-//		user = uDaoI.findByKey(2L);
-//		uDaoI.delete(user);
-//		org.junit.Assert.assertTrue("fail to delete", uDaoI.findAll().size() == 2);
-//	}
-//
-//	@Test
-//	public void testDeleteByKey() {
-//		
-//		uDaoI.deleteByKey(2L);
-//		org.junit.Assert.assertTrue("fail to delete by key a User", uDaoI.findAll().size() == 2);
-//	}
-//
-//}
+package com.cgi.test;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.transaction.Transactional;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.cgi.config.ConfigContext;
+import com.cgi.dao.UserDao;
+import com.cgi.dao.UserDaoImpl;
+import com.cgi.model.User;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {ConfigContext.class})
+@Transactional
+public class TestUserDaoImpl {
+	
+	@Autowired
+	UserDao uDao;
+	
+	
+	User user;
+	User user1;
+	
+	
+	
+	@Test
+	public void testFindAll() {
+		
+		assertNotNull(uDao.findAll());
+	}
+
+	@Test
+	public void testFindByKey() {
+		
+		user = new User();
+		uDao.add(user);
+		assertNotNull(uDao.findByKey(1L));
+	}
+
+	@Test
+	public void testAdd() {
+		
+		user = new User();
+		int sizeBefore = uDao.findAll().size();
+		uDao.add(user);
+		int sizeAfter = uDao.findAll().size();
+		assertTrue(sizeAfter == sizeBefore+1);
+	}
+
+	@Test
+	public void testUpdate() {
+		
+		user = new User();
+		user.setFirstName("joe");
+		uDao.add(user);
+		user1 = uDao.findByKey(1L);
+		user1.setFirstName("NameModify");
+		uDao.update(user1);
+		
+		assertTrue(uDao.findByKey(1L).getFirstName().equals("NameModify"));
+	}
+
+	@Test
+	public void testDelete() {
+		
+		user = new User();
+		int sizeBefore = uDao.findAll().size();
+		uDao.add(user);
+		uDao.delete(user);
+		int sizeAfter = uDao.findAll().size();
+		assertTrue(sizeAfter == sizeBefore);
+	}
+
+	@Test
+	public void testDeleteByKey() {
+		
+		user = new User();
+		int sizeBefore = uDao.findAll().size();
+		uDao.add(user);
+		uDao.deleteByKey(1L);
+		int sizeAfter = uDao.findAll().size();
+		assertTrue(sizeAfter == sizeBefore);
+	}
+
+}
