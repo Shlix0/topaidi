@@ -3,27 +3,23 @@ package com.cgi.test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.cgi.config.ConfigContext;
+import com.cgi.config.JpaConfig;
 import com.cgi.dao.UserDao;
-import com.cgi.dao.UserDaoImpl;
 import com.cgi.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ConfigContext.class})
+@WebAppConfiguration
 @Transactional
 public class TestUserDaoImpl {
 	
@@ -38,6 +34,8 @@ public class TestUserDaoImpl {
 	
 	@Test
 	public void testFindAll() {
+		user = new User();
+		uDao.add(user);
 		
 		assertNotNull(uDao.findAll());
 	}

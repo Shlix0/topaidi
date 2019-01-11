@@ -2,30 +2,24 @@ package com.cgi.test;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.cgi.config.ConfigContext;
 import com.cgi.dao.CommentDao;
-import com.cgi.dao.CommentDaoImpl;
-import com.cgi.dao.IdeaDaoImpl;
-import com.cgi.model.Category;
 import com.cgi.model.Comment;
 import com.cgi.model.Idea;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ConfigContext.class})
+@WebAppConfiguration
 @Transactional
 public class TesttCommentDaoImpl {
 

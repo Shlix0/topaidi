@@ -15,8 +15,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.cgi.config.ConfigContext;
+import com.cgi.config.JpaConfig;
 import com.cgi.dao.CategoryDaoImpl;
 import com.cgi.dao.IdeaDao;
 import com.cgi.dao.IdeaDaoImpl;
@@ -24,6 +26,7 @@ import com.cgi.model.Category;
 import com.cgi.model.Idea;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ConfigContext.class})
+@WebAppConfiguration
 @Transactional
 public class TestIdeaDaoImpl {
 
