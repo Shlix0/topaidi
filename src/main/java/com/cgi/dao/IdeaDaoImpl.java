@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;import java.util.stream.Collector;
+import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -68,37 +69,38 @@ public class IdeaDaoImpl implements IdeaDao {
 
 	@Override
 	public List<Idea> getTopIdeas() {
-		
+
 		List<Idea> ideas = em.createQuery("from Idea i").getResultList();
 
-		/*ideas.sort(
-				(o1, o2) -> {
-					int compareValue = Integer.compare(o1.getUsersVoteTop().size() / (o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size()) * 100 ,
-							o2.getUsersVoteTop().size() / (o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size()) * 100);
-					if(compareValue != 0) return compareValue;
-					int compareValue2 =  Integer.compare(o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size(),
-							o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size());
-					if(compareValue2 != 0) return compareValue2; 
-					return o1.getCreationDate().compareTo(o2.getCreationDate());
-				});
-				
-		Collections.reverse(ideas);*/
-		
-		Comparator<Idea> comparator = ((o1, o2) ->
-			Integer.compare(
-					(o1.getUsersVoteTop().size() / (o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size())) * 100,
-					(o2.getUsersVoteTop().size() / (o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size())) * 100));
+		/*
+		 * ideas.sort( (o1, o2) -> { int compareValue =
+		 * Integer.compare(o1.getUsersVoteTop().size() / (o1.getUsersVoteTop().size() +
+		 * o1.getUsersVoteFlop().size()) * 100 , o2.getUsersVoteTop().size() /
+		 * (o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size()) * 100);
+		 * if(compareValue != 0) return compareValue; int compareValue2 =
+		 * Integer.compare(o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size(),
+		 * o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size()); if(compareValue2
+		 * != 0) return compareValue2; return
+		 * o1.getCreationDate().compareTo(o2.getCreationDate()); });
+		 * 
+		 * Collections.reverse(ideas);
+		 */
 
+		Comparator<Idea> comparatorPercentTop = ((o1, o2) -> Integer.compare(
+				(o1.getUsersVoteTop().size() / (o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size())) * 100,
+				(o2.getUsersVoteTop().size() / (o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size())) * 100));
 
-		Comparator<Idea> comparator2 = (o1, o2) ->  Integer.compare(o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size(),
-				o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size()); 
+		Comparator<Idea> comparatorTotalVote = (o1, o2) -> Integer.compare(
+				o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size(),
+				o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size());
 
-		Comparator<Idea> comparator3  =(o1, o2) -> o1.getCreationDate().compareTo(o2.getCreationDate());
-		
-		Comparator<Idea> comparator4 = comparator.thenComparing(comparator2).thenComparing(comparator3);
-		
-		Collections.sort(ideas,comparator4);
-		//Collections.reverse(ideas);
+		Comparator<Idea> comparatorDate = (o1, o2) -> o1.getCreationDate().compareTo(o2.getCreationDate());
+
+		Comparator<Idea> fullComparator = comparatorPercentTop.thenComparing(comparatorTotalVote).thenComparing(comparatorDate);
+
+		Collections.sort(ideas, fullComparator);
+		Collections.reverse(ideas);
+		// Collections.reverse(ideas);
 		return ideas;
 
 //		List result2 = ideas.stream().sorted( 
@@ -114,22 +116,18 @@ public class IdeaDaoImpl implements IdeaDao {
 
 		List<Idea> ideas = em.createQuery("from Idea i").getResultList();
 
-		Comparator<Idea> comparator = (o2, o1) -> Integer.compare(
+		Comparator<Idea> comparatorFullVote = (o2, o1) -> Integer.compare(
 				(o2.getUsersVoteFlop().size() + o2.getUsersVoteFlop().size()),
 				(o1.getUsersVoteFlop().size() + o1.getUsersVoteFlop().size()));
-//
-//		Comparator<Idea> comparator = (o1, o2) -> Integer.compare(
+
+//		Comparator<Idea> comparatorPercentTop = ((o2, o1) -> Integer.compare(
 //				(o2.getUsersVoteTop().size() / (o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size())) * 100,
-//				(o1.getUsersVoteTop().size() / (o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size())) * 100);
+//				(o1.getUsersVoteTop().size() / (o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size())) * 100));
 
-		comparator.thenComparing((o2, o1) -> Integer.compare(
-				(o2.getUsersVoteTop().size() / (o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size())) * 100,
-				(o1.getUsersVoteTop().size() / (o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size())) * 100));
+		Comparator<Idea> comparatorDate = (o2, o1) -> o1.getCreationDate().compareTo(o2.getCreationDate());
 
-		comparator.thenComparing((o2, o1) -> o1.getCreationDate().compareTo(o2.getCreationDate()));
-		
-		
-		ideas.sort(comparator);
+		Comparator<Idea> fullComparator = comparatorFullVote.thenComparing(comparatorDate);
+		Collections.sort(ideas, fullComparator);
 		Collections.reverse(ideas);
 		return ideas;
 
