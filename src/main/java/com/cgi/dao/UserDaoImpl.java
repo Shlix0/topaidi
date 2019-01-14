@@ -2,7 +2,9 @@ package com.cgi.dao;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -65,8 +67,18 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<User> getBrainUsers() {
-		List<User> users =  em.createQuery("SELECT u FROM User u ORDER BY size(u.ideas) DESC").getResultList();
-		return users;
+		List<User> users =  em.createQuery("from User u").getResultList();
+		
+	/*	List result = users.stream().sorted(
+				(o1, o2)-> o1.getIdeas().size().compareTo(o2.getIdeas().size())).
+                collect(Collectors.toList());*/
+		
+		
+		List result2 = users.stream().sorted( 
+				(o1, o2)->Integer.compare(o2.getIdeas().size(),o1.getIdeas().size())).
+                collect(Collectors.toList());
+				
+		return result2;
 		
 		}
 
