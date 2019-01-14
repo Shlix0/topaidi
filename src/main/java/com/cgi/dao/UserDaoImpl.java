@@ -74,6 +74,7 @@ public class UserDaoImpl implements UserDao {
                 collect(Collectors.toList());*/
 		
 		
+		
 		List result2 = users.stream().sorted( 
 				(o1, o2)->Integer.compare(o2.getIdeas().size(),o1.getIdeas().size())).
                 collect(Collectors.toList());

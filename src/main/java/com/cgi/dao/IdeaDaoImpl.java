@@ -1,7 +1,9 @@
 package com.cgi.dao;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -55,9 +57,57 @@ public class IdeaDaoImpl implements IdeaDao {
 
 	@Override
 	public List<Idea> findAllIdeaByCategory(Long key) {
+
+		List<Idea> ideas = new ArrayList<Idea>();
+		ideas = em.createQuery("SELECT i FROM Idea i WHERE i.category.id = :key").setParameter("key", key)
+				.getResultList();
+		return ideas;
+	}
+
+	@Override
+	public List<Idea> getTopIdeas() {
+		List<Idea> ideas = em.createQuery("from Idea i").getResultList();
+
 		
-		 List<Idea> ideas = new ArrayList<Idea>();
-		 ideas = em.createQuery("SELECT i FROM Idea i WHERE i.category.id = :key").setParameter("key", key).getResultList();
-		 return ideas;
+		Comparator<Idea> comparator = (o1, o2)-> Integer.compare(o2.getUsersVoteTop().size(),o1.getUsersVoteTop().size());
+		
+		comparator.thenComparing((o1, o2) -> Integer.compare((o2.getUsersVoteTop().size()/(o2.getUsersVoteTop().size()+o2.getUsersVoteFlop().size()))*100,
+																o1.getUsersVoteTop().size()/(o1.getUsersVoteTop().size()+o1.getUsersVoteFlop().size()))*100);
+		
+		comparator.thenComparing((o1, o2) -> Integer.compare(o2.getUsersVoteTop().size()+o2.getUsersVoteFlop().size(),o1.getUsersVoteTop().size()+o1.getUsersVoteFlop().size()));
+		
+		comparator.thenComparing((o1, o2) -> o1.getCreationDate().compareTo(o2.getCreationDate()));
+		
+		ideas.sort(comparator);
+		
+		return ideas;
+											
+		
+//		List result2 = ideas.stream().sorted( 
+//				(o1, o2)-> Integer.compare(o2.getUsersVoteTop().size(),o1.getUsersVoteTop().size();
+//				)
+//                collect(Collectors.toList());
+//		
+//		return result2;
+	}
+
+	@Override
+	public List<Idea> getBuzzIdeas() {
+
+		List<Idea> ideas = em.createQuery("from Idea i").getResultList();
+
+		List result2 = ideas.stream()
+				.sorted((o1, o2) -> Integer.compare((o2.getUsersVoteTop().size() + o2.getUsersVoteFlop().size()),
+						(o1.getUsersVoteTop().size() + o1.getUsersVoteFlop().size())))
+				.collect(Collectors.toList());
+
+		return result2;
+	}
+
+	@Override
+	public List<Idea> getReportedIdeas() {
+
+		List<Idea> ideas = em.createQuery("from Idea i WHERE i.usersReport NOT NULL").getResultList();
+		return ideas;
 	}
 }
