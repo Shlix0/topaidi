@@ -144,7 +144,7 @@ public class TestIdeaDaoImpl {
 		User user = new User();
 		uDao.add(user);
 		userVoteTopIdea0.add(user);
-		userVoteTopIdea2.add(user);
+		userVoteTopIdea1.add(user);
 		
 		User user1 = new User();
 		uDao.add(user1);
@@ -155,6 +155,10 @@ public class TestIdeaDaoImpl {
 		uDao.add(user2);
 		userVoteTopIdea2.add(user2);
 		userVoteTopIdea1.add(user1);
+		
+		User user3 = new User();
+		uDao.add(user3);
+		userVoteTopIdea1.add(user3);
 		
 		idea.setUsersVoteTop(userVoteTopIdea0);
 		idea1.setUsersVoteTop(userVoteTopIdea1);
@@ -200,9 +204,11 @@ public class TestIdeaDaoImpl {
 		userVoteTopIdea1.add(user1);
 		
 		User user3 = new User();
+		uDao.add(user3);
 		userVoteFlopIdea1.add(user3);
 		
 		User user4 = new User();
+		uDao.add(user4);
 		userVoteFlopIdea1.add(user4);
 		
 		idea.setUsersVoteTop(userVoteTopIdea0);
@@ -223,6 +229,19 @@ public class TestIdeaDaoImpl {
 	}
 	@Test
 	public void testGetReportedIdeas() {
+		
+		idea = new Idea();
+		User user = new User();
+		Collection<User> usersReportIdea = idea.getUsersReport();
+		usersReportIdea.add(user);
+		idea.setUsersReport(usersReportIdea);
+		iDao.add(idea);
+		iDao.add(idea1);
+		idea1 = new Idea();
+		
+		List<Idea> ideas = iDao.getReportedIdeas();
+		assertTrue(ideas.get(0)!=null);
+		
 		
 	}
 
