@@ -20,9 +20,11 @@ import com.cgi.config.ConfigContext;
 import com.cgi.config.JpaConfig;
 import com.cgi.dao.LoginDao;
 import com.cgi.dao.LoginDaoImpl;
+import com.cgi.dao.UserDao;
 import com.cgi.model.Category;
 import com.cgi.model.Idea;
 import com.cgi.model.Login;
+import com.cgi.model.User;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ConfigContext.class})
 @WebAppConfiguration
@@ -33,6 +35,9 @@ public class TestLoginDaoImpl {
 	
 	@Autowired
 	LoginDao lDao;
+	
+	@Autowired
+	UserDao uDao;
 	
 	@Test
 	public void testFindAll() {
@@ -90,5 +95,5 @@ public class TestLoginDaoImpl {
 		int sizeAfter = lDao.findAll().size();
 		assertTrue(sizeAfter == sizeBefore);
 	}
-
+	
 }

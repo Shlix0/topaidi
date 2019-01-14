@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class User {
 	inverseJoinColumns = @JoinColumn(name="Comment_ID"))
 	private Collection<Comment> commentsReported = new HashSet<Comment>();
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private Collection<Idea> ideas = new HashSet<Idea>();
 	
 	@ManyToMany

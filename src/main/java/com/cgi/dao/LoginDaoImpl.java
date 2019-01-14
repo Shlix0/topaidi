@@ -50,4 +50,5 @@ public class LoginDaoImpl implements LoginDao {
 		Login login = em.find(Login.class, id);
 		em.remove(login);
 	}
+
 }
