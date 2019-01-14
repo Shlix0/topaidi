@@ -13,12 +13,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.cgi.config.ConfigContext;
 import com.cgi.config.JpaConfig;
+import com.cgi.dao.CategoryDao;
 import com.cgi.dao.CategoryDaoImpl;
 import com.cgi.dao.IdeaDao;
 import com.cgi.dao.IdeaDaoImpl;
@@ -36,6 +38,8 @@ public class TestIdeaDaoImpl {
 	@Autowired
 	IdeaDao iDao;
 	
+	@Autowired
+	CategoryDao cDao;
 	
 	@Test
 	public void testFindAll() {
@@ -105,16 +109,22 @@ public class TestIdeaDaoImpl {
 		
 	}
 	
-//	@Test
-//	public void testFindAllIdeaByCategory() {
-//		
-// 
-//		
-//		List<Idea> ideas = iDaoI.findAllIdeaByCategory(1L);
-//		
-//		org.junit.Assert.assertTrue("fail to get ideas by category key", ideas.size() == 2);
-//		
-//	}
-//	
+	@Test
+	public void testFindAllIdeaByCategory() {
+		
+		Category c = new Category();
+		idea = new Idea();
+		idea.setCategory(c);
+		cDao.add(c);
+		iDao.add(idea);
+		Long idCategory = c.getId();
+		
+		List<Idea> ideas = iDao.findAllIdeaByCategory(idCategory);
+		assertTrue(ideas.size()== 1);	
+		
+		
+	}
+	
 
 }
+

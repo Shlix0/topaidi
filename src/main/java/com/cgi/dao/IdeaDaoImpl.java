@@ -55,8 +55,9 @@ public class IdeaDaoImpl implements IdeaDao {
 
 	@Override
 	public List<Idea> findAllIdeaByCategory(Long key) {
+		
 		 List<Idea> ideas = new ArrayList<Idea>();
-		 ideas = (ArrayList)em.createQuery("SELECT * FROM Idea i WHERE i.category.id = :key").setParameter("key", key);
+		 ideas = em.createQuery("SELECT i FROM Idea i WHERE i.category.id = :key").setParameter("key", key).getResultList();
 		 return ideas;
 	}
 }
