@@ -2,6 +2,7 @@ package com.cgi.dao;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -69,27 +70,23 @@ public class UserDaoImpl implements UserDao {
 	public List<User> getBrainUsers() {
 		List<User> users =  em.createQuery("from User u").getResultList();
 		
-	/*	List result = users.stream().sorted(
-				(o1, o2)-> o1.getIdeas().size().compareTo(o2.getIdeas().size())).
-                collect(Collectors.toList());*/
-		
-		
-		
-		List result2 = users.stream().sorted( 
-				(o1, o2)->Integer.compare(o2.getIdeas().size(),o1.getIdeas().size())).
-                collect(Collectors.toList());
-				
-		return result2;
+		 List<User> sorted = users.stream().sorted(Comparator
+	        		.<User, Integer>comparing((l1) -> (l1.getIdeas().size())))
+	                .collect(Collectors.toList());
+		 Collections.reverse(sorted);		
+		return sorted;
 		
 		}
 
 	@Override
 	public void addVoteTopToIdea(Long idUser, Long idIdea) {
+
+		
 		User user = em.find(User.class, idUser);
 		Idea idea = em.find(Idea.class, idIdea);
-		
-		Collection<Idea> ideas = user.getVoteTop();
-		ideas.add(idea);
+		Collection<Idea> ideasTop = user.getVoteTop();
+		Collection<Idea> ideasFlop = user.getVoteFlop();
+		ideasTop.add(idea);
 		em.merge(user);
 		
 	}
@@ -98,8 +95,8 @@ public class UserDaoImpl implements UserDao {
 	public void addVoteFlopToIdea(Long idUser,Long idIdea) {
 		User user = em.find(User.class, idUser);
 		Idea idea = em.find(Idea.class, idIdea);
-		Collection<Idea> ideas = user.getVoteFlop();
-		ideas.add(idea);
+		Collection<Idea> ideasFlop = user.getVoteFlop();
+		ideasFlop.add(idea);
 		em.merge(user);
 	}
 	
