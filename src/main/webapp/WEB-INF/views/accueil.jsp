@@ -21,14 +21,14 @@
 						<!-- Button trigger modal -->
 						<div align="center">
 							<button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#exampleModalLong">Visualiser</button>
+								data-target="#exampleModalLong-${idea.id}">Visualiser</button>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="exampleModalLong" tabindex="-1"
+						<div class="modal fade" id="exampleModalLong-${idea.id}" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLongTitle"
 							aria-hidden="true">
 
-							<form:input path="idIdea" type="hidden" />
+<%-- 							<form:input path="idIdea" type="hidden" /> --%>
 
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
@@ -52,23 +52,7 @@
 														<a>${idea.title}</a>
 													</h4>
 													<p class="card-text" align="justify">${idea.content}</p>
-												</div>
-
-												<div class="titleBox">
-													<label><i class="far fa-comment"></i> Commentaires
-													</label> <form:input path="comment" value="${comment.content}" placeholder="Votre commentaire..." type="text"
-														style="height: 50px" class="form-control" />
-													<div align="left">
 														<span class="date sub-text">${idea.creationDate}</span>
-														<div align="right">
-															<a href="${idea.idIdea}/addComment"
-																class="btn btn-primary btn-lg active" role="button"
-																aria-pressed="true"><i class="fas fa-sign-in-alt"></i></a>
-														</div>
-													</div>
-													<c:forEach items="${commentList}" var="comment">
-														<p>${comment.title} ${comment.content}</p>
-													</c:forEach>
 												</div>
 												<div align="center">
 													<a href="#" class="btn btn-primary btn-lg active"
@@ -84,6 +68,24 @@
 														aria-pressed="true" data-dismiss="modal"><i
 														class="fas fa-thumbs-down"></i></a>
 												</div>
+
+ 												<div class="titleBox">
+													<label><i class="far fa-comment"></i> Commentaires
+													</label> 
+													<form:form method="POST" action="${idea.id}/addComment">
+													
+													 <form:input path="comment.content" placeholder="Votre commentaire..." type="text"
+														style="height: 50px" class="form-control" />
+													<div align="left">
+														<div align="right">
+															<input type="submit" class="btn btn-primary" value="Ajouter Commentaire"/>
+														</div>
+													</div>
+													</form:form>
+													<c:forEach items="${idea.comments}" var="comment">
+														<p>${comment.title} ${comment.content}</p>
+													</c:forEach>
+												</div>  
 											</div>
 										</div>
 									</div>

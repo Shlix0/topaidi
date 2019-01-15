@@ -1,5 +1,6 @@
 package com.cgi.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,14 +40,14 @@ public class HomeController {
 	UserDao uDao;
 
 	@GetMapping("/home")
-	public String home(Long id, Model model) {
+	public String home(Model model) {
 
 		List<Idea> ideas = iDao.findAll();
 		model.addAttribute("ideaList", ideas);
-
-		List<Comment> comments = coDao.findByIdIdea(id);
+		List<Comment> comments = coDao.findAll();
 		model.addAttribute("commentList", comments);
-
+		model.addAttribute("comment", new Comment());
+		
 		return "accueil";
 	}
 
@@ -53,21 +55,20 @@ public class HomeController {
 	public String add(Model model) {
 
 		model.addAttribute("idea", new Idea());
-		model.addAttribute("comment", new Idea());
+		model.addAttribute("comment", new Comment());
 
 		return "addIdea";
 	}
 
-	@GetMapping("{idIdea}/addComment")
+	@PostMapping("{idIdea}/addComment")
 	public String addComment(@PathVariable(value = "idIdea") Long id,
 			@ModelAttribute("comment") Comment comment, Model model) {
 		
 		Idea idea = iDao.findByKey(id);
 		model.addAttribute("idea", idea);
 		
-		List<Comment> comments = coDao.findByIdIdea(id);
-		
-        comments.add(comment);		
+		idea.getComments().add(comment);
+		iDao.update(idea);
 		
 		return "accueil";
 	}
