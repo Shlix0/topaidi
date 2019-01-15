@@ -99,5 +99,14 @@ public class UserDaoImpl implements UserDao {
 		ideasFlop.add(idea);
 		em.merge(user);
 	}
+
+	@Override
+	public User findByLogin(String mail, String password) {
+		User user = new User();
+		user = (User) em.createQuery("SELECT u FROM User u WHERE u.login.mail = :mail AND u.loging.password = :password")
+				.setParameter("mail", mail)
+				.setParameter("password", password);
+		return user;
+	}
 	
 }

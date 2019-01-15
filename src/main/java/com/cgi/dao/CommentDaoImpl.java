@@ -1,5 +1,6 @@
 package com.cgi.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.cgi.model.Comment;
+import com.cgi.model.Idea;
 
 @Repository
 @Transactional
@@ -49,5 +51,14 @@ public class CommentDaoImpl implements CommentDao {
 	public void deleteByKey(Long id) {
 		Comment comment = em.find(Comment.class, id);
 		em.remove(comment);
+	}
+
+	@Override
+	public List<Comment> findByIdIdea(Long id) {
+
+		List<Comment> comments = new ArrayList<Comment>();
+		comments = em.createQuery("SELECT c FROM Comment c WHERE c.idea.id = :key").setParameter("key", id)
+				.getResultList();
+		return comments;
 	}
 }

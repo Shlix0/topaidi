@@ -2,6 +2,7 @@ package com.cgi.test;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.cgi.config.ConfigContext;
 import com.cgi.dao.CommentDao;
+import com.cgi.dao.IdeaDao;
 import com.cgi.model.Comment;
 import com.cgi.model.Idea;
 
@@ -25,6 +27,9 @@ public class TesttCommentDaoImpl {
 
 	@Autowired
 	CommentDao cDao;
+	
+	@Autowired
+	IdeaDao iDao;
 	
 	Comment com;
 	Comment com1;
@@ -88,4 +93,23 @@ public class TesttCommentDaoImpl {
 		assertTrue(sizeAfter == sizeBefore);
 	}
 
+	@Test
+	public void testFindByIdIdea() {
+		com = new Comment();
+		com1 = new Comment();
+		Idea idea = new Idea();
+		com.setIdea(idea);
+		com1.setIdea(idea);
+		iDao.add(idea);
+		cDao.add(com);
+		cDao.add(com1);
+		
+		List<Comment> comments = cDao.findByIdIdea(idea.getId());
+		assertTrue(comments.size() == 2);
+		
+		
+		
+		
+		
+	}
 }

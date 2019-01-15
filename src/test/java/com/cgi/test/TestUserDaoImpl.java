@@ -19,8 +19,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.cgi.config.ConfigContext;
 import com.cgi.config.JpaConfig;
 import com.cgi.dao.IdeaDao;
+import com.cgi.dao.LoginDao;
 import com.cgi.dao.UserDao;
 import com.cgi.model.Idea;
+import com.cgi.model.Login;
 import com.cgi.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,6 +35,8 @@ public class TestUserDaoImpl {
 	UserDao uDao;
 	@Autowired
 	IdeaDao iDao;
+	@Autowired
+	LoginDao lDao;
 	
 	User user;
 	User user1;
@@ -189,6 +193,23 @@ public class TestUserDaoImpl {
 		uDao.addVoteFlopToIdea(user.getId(), idea.getId());
 		int sizeAfter = user.getVoteFlop().size();
 		assertTrue(sizeAfter == sizeBefore+1 );
+	}
+	
+	@Test
+	public void testFindByLogin(){
+		
+		user = new User();
+		Login login = new Login();
+		login.setMail("test@test.com");
+		login.setPassword("hArdPassword12");
+		lDao.add(login);
+		user.setLogin(login);
+		uDao.add(user);
+		Long idUserT = user.getId();
+		user1 = uDao.findByLogin("test@test.com", "hArdPassword12") ;
+		assertTrue(user.getId() == idUserT);
+		
+		
 	}
 	
 	
