@@ -43,8 +43,8 @@ public class HomeController {
 		List<Idea> ideas = iDao.findAll();
 		model.addAttribute("ideaList", ideas);
 
-//		List<Comment> comments = coDao.findByIdIdea(id);
-//		model.addAttribute("commentList", comments);
+		List<Comment> comments = coDao.findByIdIdea(id);
+		model.addAttribute("commentList", comments);
 
 		return "accueil";
 	}
@@ -53,6 +53,7 @@ public class HomeController {
 	public String add(Model model) {
 
 		model.addAttribute("idea", new Idea());
+		model.addAttribute("comment", new Idea());
 
 		return "addIdea";
 	}
@@ -64,9 +65,9 @@ public class HomeController {
 		Idea idea = iDao.findByKey(id);
 		model.addAttribute("idea", idea);
 		
-//		List<Comment> comments = coDao.findByIdIdea(id);
-//		
-//        comments.add(e)		
+		List<Comment> comments = coDao.findByIdIdea(id);
+		
+        comments.add(comment);		
 		
 		return "accueil";
 	}

@@ -131,8 +131,9 @@
 				professionnels, aux enjeux divers et variés, se rendent chaque année
 				ici pour y découvrir les inventions de demain !</p>
 			<div align="center">
-				<a href="#" class="btn btn-primary btn-lg active" role="button"
-					aria-pressed="true">Nouvelle idée <i class="fas fa-lightbulb"></i></a>
+			
+				<a href="ideas/addIdea" class="btn btn-primary btn-lg active" role="button"
+					aria-pressed="true" >Nouvelle idée <i class="fas fa-lightbulb"></i></a>
 			</div>
 		</header>
 

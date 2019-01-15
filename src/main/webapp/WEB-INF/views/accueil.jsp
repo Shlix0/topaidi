@@ -56,7 +56,7 @@
 
 												<div class="titleBox">
 													<label><i class="far fa-comment"></i> Commentaires
-													</label> <input placeholder="Votre commentaire..." type="text"
+													</label> <form:input path="comment" value="${comment.content}" placeholder="Votre commentaire..." type="text"
 														style="height: 50px" class="form-control" />
 													<div align="left">
 														<span class="date sub-text">${idea.creationDate}</span>
