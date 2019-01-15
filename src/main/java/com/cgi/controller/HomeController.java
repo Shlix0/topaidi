@@ -37,7 +37,7 @@ public class HomeController {
 	@Autowired
 	UserDao uDao;
 
-	@GetMapping("")
+	@GetMapping("/home")
 	public String home(Long id, Model model) {
 
 		List<Idea> ideas = iDao.findAll();
