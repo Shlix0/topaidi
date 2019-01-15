@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+body {
+	padding-top: 54px;
+}
+
+@media ( min-width : 992px) {
+	body {
+		padding-top: 56px;
+	}
+}
+
+.portfolio-item {
+	margin-bottom: 30px;
+}
+
+.pagination {
+	margin-bottom: 30px;
+}
+
+.card {
+	height: 100%;
+}
+
+.dropdown-item {
+	color: black !important;
+}
+/* .cmpt { */
+/* 	color: #FFFFFF; */
+/* 	background-color: #DAA520 */
+/* } */
+
+/* .perso { permet de gérer la couleur du fond ainsi qu'une bordure et la couleur du texte*/
+/* 	background: #DAA520 !important; */
+/* 	color: #FFFFFF !important; */
+/* 	border: 1px solid black; */
+/* } */
+
+/* .card-body h4 a { Permet de gérer la couleur du titre des cards*/
+/* 	color: #FFFFFF !important; */
+/* } */
+.card-body {
+	font-family: Times New Roman !important;
+	/* 	font-size:10; */
+}
+
+.btn.btn-primary.btn-lg.active {
+	color: blue !important;
+	background: transparent;
+	border: 0px solid transparent;
+}
+
+.formLogin {
+	padding: 15px;
+	min-width: 300px;
+	text-decoration: none;
+	color: #000000;
+	background-color: #A9A9A9;
+}
+
+/* .dropdown-menu.dropdown-menu-right div{ */
+/* 	background-color: rgba(0, 0, 255, 0.25); */
+/* } */
+.date.sub-text {
+	font-size: 12px;
+}
+
+.titleBox span {
+	align: center;
+}
+.nav.navbar-nav.navbar-right li a {
+	color: #A9A9A9;
+}
+
+.dropdown-menu.dropdown-menu-right {
+	 margin-top: 15px !important;
+}
+/* .label.NameUser{ */
+/* 	color: dark; */
+/* } */

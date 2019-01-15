@@ -1,50 +1,16 @@
 
 
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-      <h3>About Us</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Pellentesque imperdiet consectetur dolor in elementum.</p>
-
-      </div>
-      <div class="col-md-2 list">
-        <ul>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-        </ul>
-
-      </div>
-      <div class="col-md-2 list">
-        <ul>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-        </ul>
-
-      </div>
-      <div class="col-md-2">
-    
-      </div>
-      <div class="col-md">
-        <h5><strong>Contact Info</strong></h5>
-        <p><strong>Adress:</strong> 514 S. Magnolia St.
-		Orlando, FL 32806 <!-- Random Adress -->
-		</p>
-        <p><strong>Email:</strong> email@example.com</p>
-        <p><strong>Tel.:</strong> (888) 888 8888</p>
-      </div>
     </div>
-  </div>
+	<!-- /.container -->
 
-    
-
-  
-</footer>
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Your
+				Website 2018</p>
+		</div>
+		<!-- /.container -->
+	</footer>
 
 </body>
 </html>
