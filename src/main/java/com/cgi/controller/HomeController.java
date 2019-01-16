@@ -60,8 +60,8 @@ public class HomeController {
 		return "addIdea";
 	}
 
-	@PostMapping("{idIdea}/addComment")
-	public String addComment(@PathVariable(value = "idIdea") Long id,
+	@PostMapping("{id}/addComment")
+	public String addComment(@PathVariable(value = "id") Long id,
 			@ModelAttribute("comment") Comment comment, Model model) {
 		
 		Idea idea = iDao.findByKey(id);

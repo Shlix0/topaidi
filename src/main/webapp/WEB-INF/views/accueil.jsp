@@ -74,7 +74,7 @@
 													</label> 
 													<form:form method="POST" action="${idea.id}/addComment">
 													
-													 <form:input path="comment.content" placeholder="Votre commentaire..." type="text"
+													 <form:input path="content" placeholder="Votre commentaire..." type="text"
 														style="height: 50px" class="form-control" />
 													<div align="left">
 														<div align="right">
