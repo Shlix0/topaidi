@@ -18,6 +18,7 @@ import com.cgi.model.Comment;
 import com.cgi.model.Idea;
 import com.cgi.model.Login;
 import com.cgi.model.User;
+import com.cgi.user.login.UserLogin;
 
 @RequestMapping("/user")
 @Controller
@@ -37,25 +38,34 @@ public class UserController {
 		List<Login> logins = lDao.findAll();
 		model.addAttribute("loginList", logins);
 		model.addAttribute("login", new Login());
+
+		model.addAttribute("userLogin", new UserLogin());
+		
 		return "inscription";
 	}
 
 	@GetMapping("/add")
 	public String add(Model model) {
-		model.addAttribute("user", new User());
-		model.addAttribute("login", new Login());
+		model.addAttribute("userLogin", new UserLogin());
 
 		return "inscription";
 	}
 
 	@PostMapping("/processForm")
-	
-	public String addUser(@ModelAttribute("user") User user,
-			              @ModelAttribute("login") Login login, 
+	public String addUser(@ModelAttribute("userLogin") UserLogin userLogin,
 			              Model model) {
-
-		uDao.add(user);
-		lDao.add(login);
+		
+		User u  = userLogin.getUser();
+		Login l = userLogin.getLogin();
+		
+		
+		lDao.add(l);
+		u.setLogin(l);
+		uDao.add(u);
+		
+		uDao.update(u);
+		lDao.update(l);
+		
 		
 		return "redirect:/ideas/home";
 	}

@@ -1,6 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="include/header.jsp"></jsp:include>
 
@@ -28,8 +31,7 @@
 </style>
 
 <spring:url value="/user/processForm" var="processUrl" />
-<form:form method="post" action="${processUrl}" modelAttribute="user"
-	>
+<form:form method="post" action="${processUrl}" modelAttribute="userLogin">
 
 	<div class="row">
 		<div
@@ -42,14 +44,14 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
-							<form:input path="firstName" type="text"
+							<form:input path="user.firstName" type="text"
 								class="form-control input-lg" placeholder="Prénom" tabindex="1"
 								 />
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
-							<form:input path="lastName" type="text"
+							<form:input path="user.lastName" type="text"
 								class="form-control input-lg" placeholder="Nom" tabindex="2"
 								 />
 						</div>
@@ -58,7 +60,7 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
-							<form:input path="birthDate" type="date"
+							<form:input path="user.birthDate" type="text"
 								class="form-control input-lg" placeholder="Date de naissance"
 								tabindex="3"  />
 						</div>
@@ -83,7 +85,7 @@
 				<div class="row">
 					<div class="col-xs-4 col-sm-3 col-md-3">
 						<span class="button-checkbox">
-							<button type="button" class="btn" data-color="info" tabindex="7"></button>J'accepte
+							<button type="button" class="btn" data-color="info" tabindex="6"></button>J'accepte
 							<input type="checkbox" name="t_and_c" id="t_and_c" class="hidden"
 							value="1">
 						</span>
