@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.jsp.tagext.TryCatchFinally;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -42,8 +43,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User update(User user) {
-		em.merge(user);
-		return user;
+		return em.merge(user);
 	}
 
 	@Override
@@ -82,12 +82,12 @@ public class UserDaoImpl implements UserDao {
 	public void addVoteTopToIdea(Long idUser, Long idIdea) {
 
 		
-		User user = em.find(User.class, idUser);
 		Idea idea = em.find(Idea.class, idIdea);
-		Collection<Idea> ideasTop = user.getVoteTop();
-		Collection<Idea> ideasFlop = user.getVoteFlop();
-		ideasTop.add(idea);
-		em.merge(user);
+		User user = em.find(User.class, idUser);
+		Collection<Idea> ideasVotedTop = user.getVoteTop();
+		ideasVotedTop.add(idea);
+		
+		em.merge(idea);
 		
 	}
 
@@ -102,16 +102,22 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User findByLogin(String mail, String password) {
-		 User user =  (User) em.createQuery("SELECT u FROM User u WHERE u.login.mail = :mail AND u.login.password = :password")
-				.setParameter("mail", mail)
-				.setParameter("password", password)
-				.getSingleResult();
-		 		
+		User user = new User();
+		try {
+			  user =  (User) em.createQuery("SELECT u FROM User u WHERE u.login.mail = :mail AND u.login.password = :password")
+						.setParameter("mail", mail)
+						.setParameter("password", password)
+						.getSingleResult();
+			
+		} catch (Exception e) {
+			user = null;
+		}
 		return user;
 	}
 
 	@Override
 	public User findByIdLogin(Long id) {
+		
 		User user = (User) em.createQuery("SELECT u FROM User u WHERE u.login.id = :idLogin").setParameter("idLogin", id);
 		return user;
 	}

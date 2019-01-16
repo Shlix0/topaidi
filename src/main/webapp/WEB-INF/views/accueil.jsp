@@ -60,9 +60,8 @@
 														class="fas fa-exclamation-circle"></i></a> <a href="#"
 														class="btn btn-primary btn-lg active" role="button"
 														aria-pressed="true" data-dismiss="modal"><i
-														class="fas fa-user-slash"></i></a> <a href="#"
-														class="btn btn-primary btn-lg active" role="button"
-														aria-pressed="true" data-dismiss="modal"><i
+														class="fas fa-user-slash"></i></a> <a href="/topaidi/ideas/${idea.id}/addVoteTop"
+														class="btn btn-primary btn-lg active" role="button"><i
 														class="fas fa-thumbs-up"></i></a> <a href="#"
 														class="btn btn-primary btn-lg active" role="button"
 														aria-pressed="true" data-dismiss="modal"><i
@@ -82,7 +81,9 @@
 													</div>
 													</form:form>
 													<c:forEach items="${idea.comments}" var="comment">
-														<p>${comment.title} ${comment.content}</p>
+														<p>${comment.user.firstName} ${comment.user.lastName} </br>
+															${comment.title}  
+														${comment.content}</p>
 													</c:forEach>
 												</div>  
 											</div>

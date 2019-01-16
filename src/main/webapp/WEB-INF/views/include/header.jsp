@@ -122,7 +122,7 @@
 						</div></li>
 						</c:when>
 						<c:otherwise>
-						<a  href="/topaidi/ideas/loggout"class="btn btn-danger btn-sm">Deconnection</a>
+						<a  href="/topaidi/ideas/loggout"class="btn btn-danger btn-sm">Deconnexion</a>
 						</c:otherwise>
 		</c:choose>
 							

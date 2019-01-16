@@ -218,6 +218,17 @@ public class Idea {
 	public void setComments(Collection<Comment> comments) {
 		this.comments = comments;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Idea idea = (Idea) obj;
+		
+		if(idea.getId() == this.id) {
+			return true;
+		}
+		return super.equals(obj);
+		
+	}
 
 	@Override
 	public String toString() {

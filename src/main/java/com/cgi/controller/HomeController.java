@@ -1,9 +1,11 @@
 package com.cgi.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -30,6 +32,7 @@ import com.cgi.model.User;
 
 @RequestMapping("/ideas")
 @Controller
+@Transactional
 public class HomeController {
 
 	@Autowired
@@ -51,6 +54,7 @@ public class HomeController {
 		List<Idea> ideas = iDao.findAll();
 		model.addAttribute("ideaList", ideas);
 		List<Comment> comments = coDao.findAll();
+		Collections.reverse(comments);
 		model.addAttribute("commentList", comments);
 		model.addAttribute("comment", new Comment());
 		model.addAttribute("user", new User());
@@ -73,9 +77,10 @@ public class HomeController {
 		
 		User user = (User)session.getAttribute("user");
 		
-		if(user != null && user.getRole().getName().equals("utilisateur")) {
+		if(user != null && user.getRole().getName().equals("utilisateur") && user.isActivated() ) {
 			
 			Idea idea = iDao.findByKey(id);
+			comment.setUser(user);
 			comment.setIdea(idea);
 			coDao.update(comment);
 			idea.getComments().add(comment);
@@ -99,7 +104,7 @@ public class HomeController {
 			return "redirect:/ideas/home";
 		}
 		else {
-			return "accueil";
+			return "redirect:/ideas/home";
 		}
 	}
 	
@@ -109,4 +114,16 @@ public class HomeController {
 		return "redirect:/ideas/home";
 	}
 	
+	@GetMapping("{idIdea}/addVoteTop")
+	public String addVoteTopToIdea(@PathVariable(value = "idIdea") Long id, Model model,HttpSession session) {
+		
+		Idea idea = iDao.findByKey(id);
+		User user = (User)session.getAttribute("user");
+		User u2 = uDao.update(user); // C'est la que ca déconne
+		u2.getVoteTop().add(idea);
+		uDao.update(u2);
+
+			return "redirect:/ideas/home";
+		
+	}
 }

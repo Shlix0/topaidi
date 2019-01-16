@@ -16,6 +16,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.cgi.model.Idea;
+import com.cgi.model.User;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 @Repository
 @Transactional
@@ -109,5 +111,19 @@ public class IdeaDaoImpl implements IdeaDao {
 
 		List<Idea> ideas = em.createQuery("Select i from Idea i WHERE i.usersReport NOT NULL").getResultList();
 		return ideas;
+	}
+
+	@Override
+	public void addVoteTop(Long idIdea, Long idUser) {
+		Idea idea = em.find(Idea.class, idIdea);
+		User user = em.find(User.class, idUser);
+		
+		System.out.println(user.getVoteTop().contains(idea));
+		
+		Collection<User> usersVoteTop = idea.getUsersVoteTop();
+		usersVoteTop.add(user);
+		idea.setUsersVoteTop(usersVoteTop);
+		em.merge(idea);
+		
 	}
 }
