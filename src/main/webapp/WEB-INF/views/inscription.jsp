@@ -27,9 +27,9 @@
 }
 </style>
 
-<spring:url value="/processForm" var="processUrl" />
+<spring:url value="/user/processForm" var="processUrl" />
 <form:form method="post" action="${processUrl}" modelAttribute="user"
-	modelAttribute="login">
+	>
 
 	<div class="row">
 		<div
@@ -44,14 +44,14 @@
 						<div class="form-group">
 							<form:input path="firstName" type="text"
 								class="form-control input-lg" placeholder="Prénom" tabindex="1"
-								value="${user.firstName}" />
+								 />
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<form:input path="lastName" type="text"
 								class="form-control input-lg" placeholder="Nom" tabindex="2"
-								value="${user.lastName}" />
+								 />
 						</div>
 					</div>
 				</div>
@@ -60,31 +60,23 @@
 						<div class="form-group">
 							<form:input path="birthDate" type="date"
 								class="form-control input-lg" placeholder="Date de naissance"
-								tabindex="3" value="${user.birthDate}" />
+								tabindex="3"  />
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
-							<form:input path="mail" type="email"
+							<form:input path="login.mail" type="email"
 								class="form-control input-lg" placeholder="Adresse email"
-								tabindex="4" value="${login.mail}" />
+								tabindex="4"  />
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
-							<form:input path="password" type="password"
+							<form:input path="login.password" type="password"
 								class="form-control input-lg" placeholder="Mot de passe"
-								tabindex="5" value="${login.password}" />
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6">
-						<div class="form-group">
-							<form:input path="password" type="password"
-								class="form-control input-lg"
-								placeholder="Confirmer le mot de passe" tabindex="5"
-								value="${login.password}" />
+								tabindex="5"  />
 						</div>
 					</div>
 				</div>

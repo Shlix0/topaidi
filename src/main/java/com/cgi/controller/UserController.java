@@ -33,16 +33,15 @@ public class UserController {
 
 		List<User> users = uDao.findAll();
 		model.addAttribute("userList", users);
-		
+		model.addAttribute("user", new User());
 		List<Login> logins = lDao.findAll();
 		model.addAttribute("loginList", logins);
-
-		return "accueil";
+		model.addAttribute("login", new Login());
+		return "inscription";
 	}
 
 	@GetMapping("/add")
 	public String add(Model model) {
-
 		model.addAttribute("user", new User());
 		model.addAttribute("login", new Login());
 
@@ -50,6 +49,7 @@ public class UserController {
 	}
 
 	@PostMapping("/processForm")
+	
 	public String addUser(@ModelAttribute("user") User user,
 			              @ModelAttribute("login") Login login, 
 			              Model model) {
