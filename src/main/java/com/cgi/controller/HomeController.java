@@ -25,6 +25,7 @@ import com.cgi.dao.RoleDao;
 import com.cgi.dao.UserDao;
 import com.cgi.model.Comment;
 import com.cgi.model.Idea;
+import com.cgi.model.Login;
 import com.cgi.model.User;
 
 @RequestMapping("/ideas")
@@ -53,6 +54,8 @@ public class HomeController {
 		model.addAttribute("commentList", comments);
 		model.addAttribute("comment", new Comment());
 		model.addAttribute("user", new User());
+		model.addAttribute("login", new Login());
+		
 		return "accueil";
 	}
 
@@ -66,21 +69,31 @@ public class HomeController {
 	}
 
 	@PostMapping("{idIdea}/addComment")
-	public String addComment(@PathVariable(value = "idIdea") Long id,Comment comment, Model model) {
-		Idea idea = iDao.findByKey(id);
-		comment.setIdea(idea);
-		coDao.update(comment);
-		idea.getComments().add(comment);
-		iDao.update(idea);
-		model.addAttribute("idea", idea);
+	public String addComment(@PathVariable(value = "idIdea") Long id,Comment comment, Model model, HttpSession session) {
 		
-		return "redirect:/ideas/home";
+		User user = (User)session.getAttribute("user");
+		
+		if(user != null && user.getRole().getName().equals("utilisateur")) {
+			
+			Idea idea = iDao.findByKey(id);
+			comment.setIdea(idea);
+			coDao.update(comment);
+			idea.getComments().add(comment);
+			iDao.update(idea);
+			model.addAttribute("idea", idea);
+			return "redirect:/ideas/home";
+		}
+		else {
+			return "redirect:/ideas/home";
+		}
+		
 	}
 	
 	@PostMapping("/login")
-	public String checkLogin(@ModelAttribute("user") User user,Model model,HttpSession session) {
+	public String checkLogin(@ModelAttribute("login") Login login,Model model,HttpSession session) {
 		
-		if (uDao.findByLogin(user.getLogin().getMail(), user.getLogin().getPassword()) != null) {
+		User user = uDao.findByLogin(login.getMail(), login.getPassword());
+		if (user != null) {
 			
 			session.setAttribute("user", user);
 			return "redirect:/ideas/home";
@@ -88,6 +101,12 @@ public class HomeController {
 		else {
 			return "accueil";
 		}
+	}
+	
+	@GetMapping("/loggout")
+	public String loggout(Model model,HttpSession session) {
+		session.invalidate();
+		return "redirect:/ideas/home";
 	}
 	
 }

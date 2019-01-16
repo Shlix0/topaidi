@@ -102,10 +102,17 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User findByLogin(String mail, String password) {
-		User user = new User();
-		user = (User) em.createQuery("SELECT u FROM User u WHERE u.login.mail = :mail AND u.loging.password = :password")
+		 User user =  (User) em.createQuery("SELECT u FROM User u WHERE u.login.mail = :mail AND u.login.password = :password")
 				.setParameter("mail", mail)
-				.setParameter("password", password);
+				.setParameter("password", password)
+				.getSingleResult();
+		 		
+		return user;
+	}
+
+	@Override
+	public User findByIdLogin(Long id) {
+		User user = (User) em.createQuery("SELECT u FROM User u WHERE u.login.id = :idLogin").setParameter("idLogin", id);
 		return user;
 	}
 	

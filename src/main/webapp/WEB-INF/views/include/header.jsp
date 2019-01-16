@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
 
@@ -73,25 +75,29 @@
 					<li class="nav-item"><a class="nav-link" href="#">Buzz</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Flops</a></li>
 				</ul>
-
+	<!-- -------------------------------------- MODAL LOGIN ----------------------------------------------------  -->
+	
+		<c:choose>
+			<c:when test="${empty sessionScope.user}">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button"> Connexion<span
 							class="caret"></span>
 					</a>
-						<div class="dropdown-menu dropdown-menu-right" id="formLogin">
-							<!-- 							<div class="row"> -->
+					<form:form method="POST" action="login" modelAttribute="login">
+						<div class="dropdown-menu dropdown-menu-right" id="formLogin" >
 							<div class="container-fluid">
 								<form class="dropdown">
 									<div class="form-group">
-										<label class="">Nom d'utilisateur</label> <input
-											class="form-control" name="username" id="username"
-											type="text" placeholder="email@exemple.com">
+										<label class="">Nom d'utilisateur</label>
+										 <form:input path="mail"	class="form-control" name="username" id="username"
+											type="text" placeholder="email@exemple.com"/>
 									</div>
 									<div class="form-group">
-										<label class="">Mot de passe</label> <input
+										<label class="">Mot de passe</label>
+										 <form:input path="password"
 											class="form-control" name="password" id="password"
-											type="password" placeholder="Mot de passe">
+											type="password" placeholder="Mot de passe"/>
 									</div>
 
 									<div class="form-group">
@@ -101,7 +107,7 @@
 												for="dropdownCheck"> Se souvenir de moi </label>
 										</div>
 									</div>
-
+							</form:form>
 									<button type="submit" id="btnLogin"
 										class="btn btn-success btn-sm">Connexion</button>
 
@@ -113,8 +119,13 @@
 									Inscription</a> <a class="dropdown-item" href="">Mot de passe
 									oublié ?</a>
 							</div>
-							<!-- 							</div> -->
 						</div></li>
+						</c:when>
+						<c:otherwise>
+						<li class="nav-item"><a class="nav-link" href="/topaidi/ideas/loggout">Deconnection</a></li>
+						</c:otherwise>
+		</c:choose>
+							
 				</ul>
 			</div>
 		</div>

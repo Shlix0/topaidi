@@ -207,7 +207,7 @@ public class TestUserDaoImpl {
 		uDao.add(user);
 		Long idUserT = user.getId();
 		user1 = uDao.findByLogin("test@test.com", "hArdPassword12") ;
-		assertTrue(user.getId() == idUserT);
+		assertTrue(user1.getId() == idUserT);
 		
 		
 	}

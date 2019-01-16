@@ -6,7 +6,7 @@ import com.cgi.model.User;
 
 public interface UserDao extends GenericDao<User, Long> {
 
-	
+	public User findByIdLogin(Long id);
 	public List<User> getAllUsersUnactivated();
 	public List<User> getBrainUsers();
 	public void addVoteTopToIdea(Long idUser, Long idIdea);
