@@ -107,7 +107,9 @@
 
 								</form>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="">Nouveau sur ce site ?
+								<spring:url value="/user/add" var="add" />
+<%-- 	<form:form method="post" action="${processUrl}" modelAttribute="artist"> --%>
+								<a href="../view/add" class="dropdown-item">Nouveau sur ce site ?
 									Inscription</a> <a class="dropdown-item" href="">Mot de passe
 									oublié ?</a>
 							</div>
