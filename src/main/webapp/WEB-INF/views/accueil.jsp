@@ -73,8 +73,8 @@
 													<label><i class="far fa-comment"></i> Commentaires
 													</label> 
 													<form:form method="POST" action="${idea.id}/addComment">
-													<form:label path="content">Postez votre commentaire :</form:label>
-													 <form:input path="content" placeholder="Votre commentaire..." type="text"
+													<%-- <form:label path="content">Postez votre commentaire :</form:label>
+													 <form:input path="content" placeholder="Votre commentaire..." type="text" --%>
 														style="height: 50px" class="form-control" />
 													<div align="left">
 														<div align="right">
