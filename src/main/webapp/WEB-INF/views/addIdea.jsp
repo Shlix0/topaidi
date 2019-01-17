@@ -38,7 +38,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
 						<form:input path="title" type="text" id="title"
-							class="form-control input-lg" placeholder="Titre" tabindex="1"/>
+							class="form-control input-lg" placeholder="Titre" tabindex="1" />
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
@@ -55,6 +55,13 @@
 							class="form-control input-lg" placeholder="Entrer l'URL"
 							tabindex="3" />
 					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<form:select class="custom-select" path="category">
+						<c:forEach items="${categoryList}" var="category">
+							<form:option value="${category}">${category}</form:option>
+						</c:forEach>
+					</form:select>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">

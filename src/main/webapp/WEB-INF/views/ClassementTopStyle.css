@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+body {
+	padding-top: 54px;
+}
+
+@media ( min-width : 992px) {
+	body {
+		padding-top: 56px;
+	}
+}
+
+.portfolio-item {
+	margin-bottom: 30px;
+}
+
+.pagination {
+	margin-bottom: 30px;
+}
+
+.card {
+	height: 100%;
+}
+
+.nav.navbar-nav.navbar-right li a {
+	color: #A9A9A9;
+}
+
+.dropdown-menu.dropdown-menu-right {
+	 margin-top: 15px !important;
+}
+
+.modal.fade {
+	color: black !important;
+}
+
+.fas.fa-medal{
+	color: #FFD700 !important;
+}
+
+.table.table-dark tr:first-child td{
+	background: #FFD700 !important;
+}
+
+.table.table-dark tr:second-child td{
+	background: #C0C0C0 !important;
+}
+
+.table.table-dark tr:second-child td{
+	background: #A52A2A !important;
+}
+
+.card-body {
+	font-family: Times New Roman !important;
+	/* 	font-size:10; */
+}
+
+.btn.btn-primary.btn-lg.active {
+	color: blue !important;
+	background: transparent;
+	border: 0px solid transparent;
+}
+
+.date.sub-text {
+	font-size: 12px;
+}
