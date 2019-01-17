@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cgi.dao.LoginDao;
+import com.cgi.dao.RoleDao;
 import com.cgi.dao.UserDao;
 import com.cgi.model.Comment;
 import com.cgi.model.Idea;
 import com.cgi.model.Login;
+import com.cgi.model.Role;
 import com.cgi.model.User;
 import com.cgi.user.login.UserLogin;
 
@@ -24,6 +26,8 @@ import com.cgi.user.login.UserLogin;
 @Controller
 public class UserController {
 
+	@Autowired
+	RoleDao rDao;
 	@Autowired
 	UserDao uDao;
 	@Autowired
@@ -57,7 +61,8 @@ public class UserController {
 		
 		User u  = userLogin.getUser();
 		Login l = userLogin.getLogin();
-		
+		Role role = rDao.findByKey(1L);
+		u.setRole(role);
 		
 		lDao.add(l);
 		u.setLogin(l);

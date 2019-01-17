@@ -62,9 +62,9 @@
 														aria-pressed="true" data-dismiss="modal"><i
 														class="fas fa-user-slash"></i></a> <a href="/topaidi/ideas/${idea.id}/addVoteTop"
 														class="btn btn-primary btn-lg active" role="button"><i
-														class="fas fa-thumbs-up"></i></a> <a href="#"
+														class="fas fa-thumbs-up"></i></a> <a href="/topaidi/ideas/${idea.id}/addVoteFlop"
 														class="btn btn-primary btn-lg active" role="button"
-														aria-pressed="true" data-dismiss="modal"><i
+														aria-pressed="true"><i
 														class="fas fa-thumbs-down"></i></a>
 												</div>
 
