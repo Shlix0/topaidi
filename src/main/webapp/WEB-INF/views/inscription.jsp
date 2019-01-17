@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="include/header.jsp"></jsp:include>
 
@@ -31,7 +31,8 @@
 </style>
 
 <spring:url value="/user/processForm" var="processUrl" />
-<form:form method="post" action="${processUrl}" modelAttribute="userLogin">
+<form:form method="post" action="${processUrl}"
+	modelAttribute="userLogin">
 
 	<div class="row">
 		<div
@@ -45,40 +46,29 @@
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<form:input path="user.firstName" type="text"
-								class="form-control input-lg" placeholder="Prénom" tabindex="1"
-								 />
+								class="form-control input-lg" placeholder="Prénom" tabindex="1" />
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<form:input path="user.lastName" type="text"
-								class="form-control input-lg" placeholder="Nom" tabindex="2"
-								 />
+								class="form-control input-lg" placeholder="Nom" tabindex="2" />
 						</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-6">
-						<div class="form-group">
-							<form:input path="user.birthDate" type="text"
-								class="form-control input-lg" placeholder="Date de naissance"
-								tabindex="3"  />
-						</div>
-					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<form:input path="login.mail" type="email"
 								class="form-control input-lg" placeholder="Adresse email"
-								tabindex="4"  />
+								tabindex="4" />
 						</div>
 					</div>
-				</div>
-				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<form:input path="login.password" type="password"
 								class="form-control input-lg" placeholder="Mot de passe"
-								tabindex="5"  />
+								tabindex="5" />
 						</div>
 					</div>
 				</div>

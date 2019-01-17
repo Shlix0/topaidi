@@ -1,5 +1,6 @@
 package com.cgi.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -16,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="Utilisateur")
 public class User {
@@ -26,9 +29,8 @@ public class User {
 	
 	private String firstName;
 	private String lastName;
-	private Date birthDate;
-	private boolean activated;
 	
+	private boolean activated;
 	@OneToOne
 	private Login login;
 	
@@ -69,11 +71,10 @@ public class User {
 	public User() {
 	}
 
-	public User(String firstName, String lastName, Date birthDate, boolean activated, Login login, Role role) {
+	public User(String firstName, String lastName, boolean activated, Login login, Role role) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.birthDate = birthDate;
 		this.activated = activated;
 		this.login = login;
 		this.role = role;
@@ -85,14 +86,13 @@ public class User {
 		this.voteFlop = new HashSet<Idea>();
 	}
 
-	public User(Long id, String firstName, String lastName, Date birthDate, boolean activated, Login login, Role role,
+	public User(Long id, String firstName, String lastName, boolean activated, Login login, Role role,
 			Collection<Comment> comments, Collection<Comment> commentsReported, Collection<Idea> ideas,
 			Collection<Idea> ideasReported, Collection<Idea> voteTop, Collection<Idea> voteFlop) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.birthDate = birthDate;
 		this.activated = activated;
 		this.login = login;
 		this.role = role;
@@ -126,14 +126,6 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
 	}
 
 	public boolean isActivated() {
@@ -210,7 +202,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName 
 				+ ", activated=" + activated + ", login=" + login + ", role=" + role + ", comments=" + comments
 				+ ", commentsReported=" + commentsReported + ", ideas=" + ideas + ", ideasReported=" + ideasReported
 				+ ", voteTop=" + voteTop + ", voteFlop=" + voteFlop + "]";
