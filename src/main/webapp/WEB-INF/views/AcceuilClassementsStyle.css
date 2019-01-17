@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+body {
+	padding-top: 54px;
+}
+
+@media ( min-width : 992px) {
+	body {
+		padding-top: 56px;
+	}
+}
+
+.portfolio-item {
+	margin-bottom: 30px;
+}
+
+.pagination {
+	margin-bottom: 30px;
+}
+
+.card {
+	height: 100%;
+}
+
+.carousel-control-prev {
+	color: black;
+}
+
+.carousel-control-next {
+	color: black;
+}
+
+.nav.navbar-nav.navbar-right li a {
+    color: #A9A9A9;
+}
+
+.dropdown-menu.dropdown-menu-right {
+	 margin-top: 15px !important;
+}
+
+.carousel-inner {
+	margin-bottom:50px;
+}
