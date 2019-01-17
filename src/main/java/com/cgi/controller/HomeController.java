@@ -1,6 +1,7 @@
 package com.cgi.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -74,12 +75,13 @@ public class HomeController {
 	}
 
 	@PostMapping("{idIdea}/addComment")
-	public String addComment(@PathVariable(value = "idIdea") Long id,Comment comment, Model model, HttpSession session) {
-		
-		User user = (User)session.getAttribute("user");
-		
-		if(user != null && user.getRole().getName().equals("utilisateur") && user.isActivated() ) {
-			
+	public String addComment(@PathVariable(value = "idIdea") Long id, Comment comment, Model model,
+			HttpSession session) {
+
+		User user = (User) session.getAttribute("user");
+
+		if (user != null && user.getRole().getName().equals("utilisateur") && user.isActivated()) {
+
 			Idea idea = iDao.findByKey(id);
 			comment.setUser(user);
 			comment.setIdea(idea);
@@ -88,43 +90,98 @@ public class HomeController {
 			iDao.update(idea);
 			model.addAttribute("idea", idea);
 			return "redirect:/ideas/home";
-		}
-		else {
+		} else {
 			return "redirect:/ideas/home";
 		}
-		
+
 	}
-	
+
 	@PostMapping("/login")
-	public String checkLogin(@ModelAttribute("login") Login login,Model model,HttpSession session) {
-		
+	public String checkLogin(@ModelAttribute("login") Login login, Model model, HttpSession session) {
+
 		User user = uDao.findByLogin(login.getMail(), login.getPassword());
 		if (user != null) {
-			
+
 			session.setAttribute("user", user);
 			return "redirect:/ideas/home";
-		}
-		else {
+		} else {
 			return "redirect:/ideas/home";
 		}
 	}
-	
+
 	@GetMapping("/loggout")
-	public String loggout(Model model,HttpSession session) {
+	public String loggout(Model model, HttpSession session) {
 		session.invalidate();
 		return "redirect:/ideas/home";
 	}
-	
+
 	@GetMapping("{idIdea}/addVoteTop")
-	public String addVoteTopToIdea(@PathVariable(value = "idIdea") Long id, Model model,HttpSession session) {
+	public String addVoteTopToIdea(@PathVariable(value = "idIdea") Long id, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
 		
-		Idea idea = iDao.findByKey(id);
-		User user = (User)session.getAttribute("user");
-		User u2 = uDao.update(user); // C'est la que ca déconne
-		u2.getVoteTop().add(idea);
-		uDao.update(u2);
+		if (user != null && user.getRole().getName().equals("utilisateur")) {
+
+			Idea idea = iDao.findByKey(id);
+			User u2 = uDao.update(user);
+			Collection<Idea> ideasTop = u2.getVoteTop();
+			Collection<Idea> ideasFlop = u2.getVoteFlop();
+			Collection<Idea> ideasUser = u2.getIdeas();
+
+			for (Idea iU : ideasUser) {
+				if (iU.getId() == idea.getId())
+					return "redirect:/ideas/home";
+			}
+			for (Idea i : ideasTop) {
+				if (i.getId() == idea.getId())
+					return "redirect:/ideas/home";
+			}
+			for (Idea i2 : ideasFlop) {
+				if (i2.getId() == idea.getId())
+					return "redirect:/ideas/home";
+			}
+			u2.getVoteTop().add(idea);
+			uDao.update(u2);
 
 			return "redirect:/ideas/home";
+		} else {
+			return "redirect:/ideas/home";
+		}
+
+	}
+
+	@GetMapping("{idIdea}/addVoteFlop")
+	public String addVoteflopToIdea(@PathVariable(value = "idIdea") Long id, Model model, HttpSession session) {
+
+		User user = (User) session.getAttribute("user");
 		
+		if (user != null && user.getRole().getName().equals("utilisateur")) {
+
+			Idea idea = iDao.findByKey(id);
+			User u2 = uDao.update(user);
+			Collection<Idea> ideasTop = u2.getVoteTop();
+			Collection<Idea> ideasFlop = u2.getVoteFlop();
+			Collection<Idea> ideasUser = u2.getIdeas();
+
+			for (Idea iU : ideasUser) {
+				if (iU.getId() == idea.getId())
+					return "redirect:/ideas/home";
+			}
+			for (Idea i : ideasTop) {
+
+				if (i.getId() == idea.getId())
+					return "redirect:/ideas/home";
+			}
+			for (Idea i2 : ideasFlop) {
+				if (i2.getId() == idea.getId())
+					return "redirect:/ideas/home";
+			}
+			u2.getVoteFlop().add(idea);
+			uDao.update(u2);
+
+			return "redirect:/ideas/home";
+
+		} else {
+			return "redirect:/ideas/home";
+		}
 	}
 }
