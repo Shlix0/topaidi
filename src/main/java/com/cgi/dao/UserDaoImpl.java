@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,8 +27,10 @@ public class UserDaoImpl implements UserDao {
 	EntityManager em;
 
 	@Override
-	public List<User> findAll() {
-		return em.createQuery("from User u").getResultList();
+	public HashSet<User> findAll() {
+		List<User> us =  em.createQuery("from User u").getResultList();
+		HashSet<User> users = new HashSet<User>(us);
+		return users;
 	}
 
 	@Override

@@ -1,11 +1,12 @@
 package com.cgi.dao;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 
 public interface GenericDao <T, ID extends Serializable>  {
 
-    List<T> findAll();
+	HashSet<T> findAll();
     T findByKey(ID key);
     T add(T obj);
     T update(T obj);

@@ -1,5 +1,6 @@
 package com.cgi.dao;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -18,8 +19,10 @@ public class LoginDaoImpl implements LoginDao {
 	EntityManager em;
 	
 	@Override
-	public List<Login> findAll() {
-		return em.createQuery("from Login l").getResultList();
+	public HashSet<Login> findAll() {
+		List<Login> lgs =  em.createQuery("from Login l").getResultList();
+		HashSet<Login> logins = new HashSet<Login>(lgs);
+		return logins;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.cgi.dao;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -18,8 +19,10 @@ public class RoleDaoImpl implements RoleDao {
 	EntityManager em;
 	
 	@Override
-	public List<Role> findAll() {
-		return em.createQuery("from Role r").getResultList();
+	public HashSet<Role> findAll() {
+		List<Role> rls =  em.createQuery("from Role r").getResultList();
+		HashSet<Role> roles = new HashSet<Role>(rls);
+		return roles; 
 	}
 
 	@Override

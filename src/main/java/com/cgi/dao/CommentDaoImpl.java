@@ -1,6 +1,7 @@
 package com.cgi.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -20,8 +21,10 @@ public class CommentDaoImpl implements CommentDao {
 	EntityManager em;
 	
 	@Override
-	public List<Comment> findAll() {
-		return em.createQuery("from Comment c").getResultList();
+	public HashSet<Comment> findAll() {
+		List<Comment> cmts =  em.createQuery("from Comment c").getResultList();
+		HashSet<Comment> comments = new HashSet<Comment>(cmts);
+		return comments;
 	}
 
 	@Override

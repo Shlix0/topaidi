@@ -1,5 +1,6 @@
 package com.cgi.dao;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -18,8 +19,10 @@ public class CategoryDaoImpl implements CategoryDao {
 	EntityManager em;
 	
 	@Override
-	public List<Category> findAll() {
-		return em.createQuery("from Category c").getResultList();
+	public HashSet<Category> findAll() {
+		List<Category> cats = em.createQuery("from Category c").getResultList();
+		HashSet<Category> Categories = new HashSet<>(cats);
+		return Categories;
 	}
 
 	@Override

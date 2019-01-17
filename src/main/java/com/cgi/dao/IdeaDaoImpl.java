@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -27,8 +28,11 @@ public class IdeaDaoImpl implements IdeaDao {
 	EntityManager em;
 
 	@Override
-	public List<Idea> findAll() {
-		return em.createQuery("from Idea i").getResultList();
+	public HashSet<Idea> findAll() {
+		
+		List<Idea> ids =  em.createQuery("from Idea i").getResultList();
+		HashSet<Idea> ideas = new HashSet<Idea>(ids);
+		return ideas;
 	}
 
 	@Override
