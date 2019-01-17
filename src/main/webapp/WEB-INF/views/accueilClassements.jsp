@@ -5,7 +5,7 @@
 <jsp:include page="include/header.jsp"></jsp:include>
 
 <!-- Custom styles for this template -->
-<link href="AcceuilClassementsStyle.css" rel="stylesheet">
+<link href="acceuilClassementsStyle.css" rel="stylesheet">
 
 <style>
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next
@@ -20,14 +20,14 @@
 </style>
 
 <div align="center">
-			<a href="#" class="btn btn-primary btn-lg active" role="button"
-				aria-pressed="true" data-dismiss="modal"><i
-				class="fas fa-folder-open"></i> TOPS</a> <a href="#"
+			<a href="/topaidi/classements/top" class="btn btn-primary btn-lg active" role="button"
+				aria-pressed="true" ><i
+				class="fas fa-folder-open"></i> TOPS</a> <a href="/topaidi/classements/buzz"
 				class="btn btn-primary btn-lg active" role="button"
-				aria-pressed="true" data-dismiss="modal"><i
-				class="fas fa-folder-open"></i> BUZZ</a> <a href="#"
+				aria-pressed="true" ><i
+				class="fas fa-folder-open"></i> BUZZ</a> <a href="/topaidi/classements/brain"
 				class="btn btn-primary btn-lg active" role="button"
-				aria-pressed="true" data-dismiss="modal"><i
+				aria-pressed="true" ><i
 				class="fas fa-folder-open"></i> BRAINS </a>
 		</div>
 		<br>

@@ -5,7 +5,7 @@
 <jsp:include page="include/header.jsp"></jsp:include>
 
 <!-- Custom styles for this template -->
-<link href="ClassementBrainStyle.css" rel="stylesheet">
+<link href="classementBrainStyle.css" rel="stylesheet">
 
 <style>
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next
