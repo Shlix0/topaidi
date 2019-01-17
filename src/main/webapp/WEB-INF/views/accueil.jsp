@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <jsp:include page="include/header.jsp"></jsp:include>
 
@@ -14,10 +15,10 @@
 				<div class="perso">
 					<div class="card-body">
 						<h4 class="card-title" align="center">
-							<a>${idea.title}</a>
+							<a>Titre : ${idea.title}</a>
 						</h4>
-						<p class="card-text" align="justify">${idea.content}</p>
-
+						<p>Catégory : ${idea.category.title}</p>
+						<p>Auteur : ${idea.user.firstName} ${idea.user.lastName} </p>
 						<!-- Button trigger modal -->
 						<div align="center">
 							<button type="button" class="btn btn-primary" data-toggle="modal"
@@ -55,16 +56,17 @@
 														<span class="date sub-text">${idea.creationDate}</span>
 												</div>
 												<div align="center">
-													<a href="/topaidi/ideas/${idea.id}/addReport" class="btn btn-primary btn-lg active"
-														role="button" ><i
-														class="fas fa-exclamation-circle"></i></a> <a href="/topaidi/ideas/${idea.id}/addReport"
+													<a href="/topaidi/ideas/${idea.id}/addReport" class="btn btn-primary btn-lg active" role="button" >
+														<i class="fas fa-exclamation-circle"></i></a><span> ${fn:length(idea.usersReport)}</span>
+													 <a href="/topaidi/ideas/${idea.id}/addReport" class="btn btn-primary btn-lg active" role="button">
+														<i	class="fas fa-user-slash"></i></a>
+													  <a href="/topaidi/ideas/${idea.id}/addVoteTop"
 														class="btn btn-primary btn-lg active" role="button"><i
-														class="fas fa-user-slash"></i></a> <a href="/topaidi/ideas/${idea.id}/addVoteTop"
-														class="btn btn-primary btn-lg active" role="button"><i
-														class="fas fa-thumbs-up"></i></a> <a href="/topaidi/ideas/${idea.id}/addVoteFlop"
+														class="fas fa-thumbs-up"></i></a><span> nb Vote </span>
+														 <a href="/topaidi/ideas/${idea.id}/addVoteFlop"
 														class="btn btn-primary btn-lg active" role="button"
 														aria-pressed="true"><i
-														class="fas fa-thumbs-down"></i></a>
+														class="fas fa-thumbs-down"></i></a><span> nb Vote</span>
 												</div>
 
  												<div class="titleBox">
@@ -80,7 +82,7 @@
 													</div>
 													</form:form>
 													<c:forEach items="${idea.comments}" var="comment">
-														<p>${comment.user.firstName} ${comment.user.lastName} </br>
+														<p>${comment.user.firstName} ${comment.user.lastName} : </br>
 															${comment.title}  
 														${comment.content}</p>
 													</c:forEach>

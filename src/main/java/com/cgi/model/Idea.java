@@ -37,13 +37,13 @@ public class Idea {
 	@ManyToOne
 	private User user;
 	
-	@ManyToMany(mappedBy="ideasReported")
+	@ManyToMany(mappedBy="ideasReported", fetch=FetchType.EAGER)
 	private Collection<User> usersReport = new HashSet<User>();
 	
-	@ManyToMany(mappedBy="voteTop")
+	@ManyToMany(mappedBy="voteTop" )
 	private Collection<User> usersVoteTop = new HashSet<User>();
 	
-	@ManyToMany(mappedBy="voteFlop")
+	@ManyToMany(mappedBy="voteFlop"  )
 	private Collection<User> usersVoteFlop = new HashSet<User>();
 	
 	@OneToMany(mappedBy="idea", fetch=FetchType.EAGER)

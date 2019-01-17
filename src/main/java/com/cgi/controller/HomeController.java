@@ -1,8 +1,9 @@
-package com.cgi.controller;
+	package com.cgi.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -52,8 +53,8 @@ public class HomeController {
 
 	@GetMapping("/home")
 	public String home(Model model) {
-
-		List<Idea> ideas = iDao.findAll();
+		Collection<Idea> ideas = new HashSet<Idea>();
+		ideas = iDao.findAll();
 		model.addAttribute("ideaList", ideas);
 		List<Comment> comments = coDao.findAll();
 		Collections.reverse(comments);
@@ -180,6 +181,8 @@ public class HomeController {
 			Collection<Idea> ideasFlop = u2.getVoteFlop();
 			Collection<Idea> ideasUser = u2.getIdeas();
 
+
+			
 			for (Idea iU : ideasUser) {
 				if (iU.getId() == idea.getId())
 					return "redirect:/ideas/home";
@@ -213,6 +216,14 @@ public class HomeController {
 			User u2 = uDao.update(user);
 			Idea idea = iDao.findByKey(id);	
 			Collection<Idea> ideasReported = u2.getIdeasReported();
+			
+//			
+//			if(ideasReported.stream()
+//					.filter(i -> i.getId() == idea.getId())
+//					.findFirst().isPresent()) {
+//				System.out.println("YEAH INSIDE ");
+//			}
+			
 			for (Idea i : ideasReported) {
 				if (i.getId() == idea.getId())
 					return "redirect:/ideas/home";

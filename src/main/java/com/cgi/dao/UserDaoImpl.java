@@ -73,8 +73,13 @@ public class UserDaoImpl implements UserDao {
 		 List<User> sorted = users.stream().sorted(Comparator
 	        		.<User, Integer>comparing((l1) -> (l1.getIdeas().size())))
 	                .collect(Collectors.toList());
-		 Collections.reverse(sorted);		
-		return sorted;
+		 Collections.reverse(sorted);	
+		 
+			List<User> brain = new ArrayList<User>();
+			for(int i=0; i<10 ; i++) {
+				brain.add(sorted.get(i));
+			}
+		return brain;
 		
 		}
 

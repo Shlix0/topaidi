@@ -83,7 +83,11 @@ public class IdeaDaoImpl implements IdeaDao {
 		
 		
 		Collections.reverse(sorted);
-		return sorted;
+		List<Idea> Top = new ArrayList<Idea>();
+		for(int i=0; i<10 ; i++) {
+			Top.add(sorted.get(i));
+		}
+		return Top;
 
 	}
 
@@ -99,9 +103,14 @@ public class IdeaDaoImpl implements IdeaDao {
                 .collect(Collectors.toList());
 		
 		
+        
         Collections.reverse(sorted);
+		List<Idea> buzz = new ArrayList<Idea>();
+		for(int i=0; i<10 ; i++) {
+			buzz.add(sorted.get(i));
+		}
 		
-		return ideas;
+		return buzz;
 
 
 	}
