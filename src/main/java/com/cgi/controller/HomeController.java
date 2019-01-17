@@ -59,7 +59,8 @@ public class HomeController {
 		model.addAttribute("comment", new Comment());
 		model.addAttribute("user", new User());
 		model.addAttribute("login", new Login());
-		
+		model.addAttribute("idea", new Idea());
+		model.addAttribute("categoryList", cDao.findAll());
 		return "accueil";
 	}
 

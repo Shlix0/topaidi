@@ -38,15 +38,13 @@
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
 						<form:input path="title" type="text" id="title"
-							class="form-control input-lg" placeholder="Titre" tabindex="1"
-							value="${idea.title}" />
+							class="form-control input-lg" placeholder="Titre" tabindex="1"/>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
 						<form:input path="content" type="text" id="content"
-							class="form-control input-lg" placeholder="Contenu" tabindex="2"
-							value="${idea.content}" />
+							class="form-control input-lg" placeholder="Contenu" tabindex="2" />
 					</div>
 				</div>
 			</div>
@@ -55,7 +53,7 @@
 					<div class="form-group">
 						<form:input path="picture" type="text" id="picture"
 							class="form-control input-lg" placeholder="Entrer l'URL"
-							tabindex="3" value="${idea.picture}" />
+							tabindex="3" />
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
