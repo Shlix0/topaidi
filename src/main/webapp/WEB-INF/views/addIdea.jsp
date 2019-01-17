@@ -27,7 +27,8 @@
 }
 </style>
 
-
+<spring:url value="/ideas/processAdd" var="processUrl" />
+<form:form method="post" action="${processUrl}" modelAttribute="idea">
 <div class="row">
 	<div
 		class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
@@ -89,5 +90,6 @@
 		aria-pressed="true" data-dismiss="modal"><i
 		class="fas fa-plus-circle"></i> </a>
 </div>
+</form:form>
 
 <jsp:include page="include/footer.jsp"></jsp:include>
