@@ -55,11 +55,10 @@
 														<span class="date sub-text">${idea.creationDate}</span>
 												</div>
 												<div align="center">
-													<a href="#" class="btn btn-primary btn-lg active"
-														role="button" aria-pressed="true" data-dismiss="modal"><i
-														class="fas fa-exclamation-circle"></i></a> <a href="#"
-														class="btn btn-primary btn-lg active" role="button"
-														aria-pressed="true" data-dismiss="modal"><i
+													<a href="/topaidi/ideas/${idea.id}/addReport" class="btn btn-primary btn-lg active"
+														role="button" ><i
+														class="fas fa-exclamation-circle"></i></a> <a href="/topaidi/ideas/${idea.id}/addReport"
+														class="btn btn-primary btn-lg active" role="button"><i
 														class="fas fa-user-slash"></i></a> <a href="/topaidi/ideas/${idea.id}/addVoteTop"
 														class="btn btn-primary btn-lg active" role="button"><i
 														class="fas fa-thumbs-up"></i></a> <a href="/topaidi/ideas/${idea.id}/addVoteFlop"

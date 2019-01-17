@@ -202,4 +202,29 @@ public class HomeController {
 			return "redirect:/ideas/home";
 		}
 	}
+	
+	@GetMapping("{idIdea}/addReport")
+		public String addReportToIdea(@PathVariable(value = "idIdea") Long id, Model model, HttpSession session) {
+		
+		User user = (User) session.getAttribute("user");
+		
+		if (user != null && user.getRole().getName().equals("utilisateur")) {
+			
+			User u2 = uDao.update(user);
+			Idea idea = iDao.findByKey(id);	
+			Collection<Idea> ideasReported = u2.getIdeasReported();
+			for (Idea i : ideasReported) {
+				if (i.getId() == idea.getId())
+					return "redirect:/ideas/home";
+			}
+			
+			u2.getIdeasReported().add(idea);
+			uDao.update(u2);
+				return "redirect:/ideas/home";
+			}
+		else {
+			
+			return "redirect:/ideas/home";
+		}
+	}
 }
