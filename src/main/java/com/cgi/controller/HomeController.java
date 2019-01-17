@@ -68,9 +68,9 @@ public class HomeController {
 
 	@GetMapping("/add")
 	public String add(Model model) {
-		model.addAttribute("user", new User());
 		model.addAttribute("idea", new Idea());
-		model.addAttribute("comment", new Comment());
+		
+		model.addAttribute("categoryList", cDao.findAll());
 
 		return "addIdea";
 	}
@@ -82,7 +82,7 @@ public class HomeController {
 		User user = (User) session.getAttribute("user");
 		
 		if (user != null && user.getRole().getName().equals("utilisateur") && user.isActivated()) {
-			
+
 			idea.setUser(user);
 			iDao.add(idea);
 			

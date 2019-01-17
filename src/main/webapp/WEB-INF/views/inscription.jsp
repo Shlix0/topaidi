@@ -31,7 +31,7 @@
 </style>
 
 <spring:url value="/user/processForm" var="processUrl" />
-<form:form method="post" action="${processUrl}"
+<form:form method="POST" action="${processUrl}"
 	modelAttribute="userLogin">
 
 	<div class="row">

@@ -27,12 +27,18 @@
 }
 </style>
 
+								<script>
+									function myFunction() {
+										var popup = document
+												.getElementById("myPopup");
+										popup.classList.toggle("show");
+									}
+								</script>
 <spring:url value="/ideas/processAdd" var="processUrl" />
-<form:form method="POST" action="${processUrl}" modelAttribute="idea">
+				<form:form method="POST" action="${processUrl}" modelAttribute="idea" role="form">
 	<div class="row">
 		<div
 			class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-			<form role="form">
 				<h2>Ajouter votre Idée</h2>
 				<hr class="colorgraph">
 				<div class="row">
@@ -58,9 +64,9 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6">
-						<form:select class="custom-select" path="category">
+						<form:select class="custom-select" path="category.id">
 							<c:forEach items="${categoryList}" var="category">
-								<form:option value="${category}">${category}</form:option>
+								<form:option value="${category.id}">${category.title}</form:option>
 							</c:forEach>
 						</form:select>
 					</div>
@@ -71,27 +77,21 @@
 									votre photo ce situe dans votre ordinateur, veuillez vous
 									rendre sur le site https://www.casimages.com/ pour héberger
 									votre image en ligne.</span>
-								<script>
-									function myFunction() {
-										var popup = document
-												.getElementById("myPopup");
-										popup.classList.toggle("show");
-									}
-								</script>
+
 							</div>
 						</div>
 					</div>
 				</div>
-			</form>
 		</div>
 	</div>
 	<div align="left">
 		<div class="col-xs-12 col-md-6">
-		<form:button type="submit" class="btn btn-primary btn-lg active">ADD</form:button>
+		<button type="submit" id="btnLogin"
+										class="btn btn-success btn-sm">Connexion</button>
+	<%-- 	<form:button type="submit" class="btn btn-primary btn-lg active">ADD</form:button> --%>
 			<!-- <button type="submit" class="btn btn-primary btn-lg active"
 				value="add">Ajouter</button> -->
 		</div>
 	</div>
 </form:form>
-
 <jsp:include page="include/footer.jsp"></jsp:include>
