@@ -22,14 +22,6 @@ body {
 	height: 100%;
 }
 
-.nav.navbar-nav.navbar-right li a {
-	color: #A9A9A9;
-}
-
-.dropdown-menu.dropdown-menu-right {
-	 margin-top: 15px !important;
-}
-
 .modal.fade {
 	color: black !important;
 }
@@ -42,13 +34,13 @@ body {
 	background: #FFD700 !important;
 }
 
-.table.table-dark tr:second-child td{
-	background: #C0C0C0 !important;
-}
-
-.table.table-dark tr:second-child td{
-	background: #A52A2A !important;
-}
+tr:nth-child(2) {
+	background: #C0C0C0;
+	}
+	
+tr:nth-child(3) {
+	background: #A52A2A;
+	}
 
 .card-body {
 	font-family: Times New Roman !important;

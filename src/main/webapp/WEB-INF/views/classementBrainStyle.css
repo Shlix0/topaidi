@@ -22,14 +22,6 @@ body {
 	height: 100%;
 }
 
-.nav.navbar-nav.navbar-right li a {
-	color: #A9A9A9;
-}
-
-.dropdown-menu.dropdown-menu-right {
-	 margin-top: 15px !important;
-}
-
 .modal.fade {
 	color: black !important;
 }
@@ -38,17 +30,30 @@ body {
 	color: #FFD700 !important;
 }
 
+/* tr:nth-child(even) {background: #666666} */
+/* tr:nth-child(odd) {background: #0d0d0d} */
+
 .table.table-dark tr:first-child td{
 	background: #FFD700 !important;
 }
 
-.table.table-dark tr:second-child td{
-	background: #C0C0C0 !important;
-}
+tr:nth-child(2) {
+	background: #C0C0C0;
+	}
+	
+tr:nth-child(3) {
+	background: #A52A2A;
+	}
 
-.table.table-dark tr:second-child td{
-	background: #A52A2A !important;
-}
+
+
+/* .table.table-dark tr:second-child td{ */
+/* 	background: #C0C0C0 !important; */
+/* } */
+
+/* .table.table-dark tr:third-child td{ */
+/* 	background: #A52A2A !important; */
+/* } */
 
 .card-body {
 	font-family: Times New Roman !important;
