@@ -30,6 +30,7 @@ import com.cgi.model.Comment;
 import com.cgi.model.Idea;
 import com.cgi.model.Login;
 import com.cgi.model.User;
+import com.cgi.user.login.UserLogin;
 
 @RequestMapping("/ideas")
 @Controller
@@ -67,13 +68,30 @@ public class HomeController {
 
 	@GetMapping("/add")
 	public String add(Model model) {
-
+		model.addAttribute("user", new User());
 		model.addAttribute("idea", new Idea());
 		model.addAttribute("comment", new Comment());
 
 		return "addIdea";
 	}
-
+	
+	@PostMapping("/processAdd")
+	public String addIdea(@ModelAttribute("idea") Idea idea,
+            Model model, HttpSession session) {
+		
+		User user = (User) session.getAttribute("user");
+		
+		if (user != null && user.getRole().getName().equals("utilisateur") && user.isActivated()) {
+			
+			idea.setUser(user);
+			iDao.add(idea);
+			
+			return "redirect:/ideas/home";
+		} else {
+			return "redirect:/ideas/home";
+		}
+	}
+	
 	@PostMapping("{idIdea}/addComment")
 	public String addComment(@PathVariable(value = "idIdea") Long id, Comment comment, Model model,
 			HttpSession session) {

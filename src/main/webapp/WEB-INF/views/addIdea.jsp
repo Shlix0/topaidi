@@ -28,68 +28,70 @@
 </style>
 
 <spring:url value="/ideas/processAdd" var="processUrl" />
-<form:form method="post" action="${processUrl}" modelAttribute="idea">
-<div class="row">
-	<div
-		class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form">
-			<h2>Ajouter votre Idée</h2>
-			<hr class="colorgraph">
-			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-						<form:input path="title" type="text" id="title"
-							class="form-control input-lg" placeholder="Titre" tabindex="1" />
+<form:form method="POST" action="${processUrl}" modelAttribute="idea">
+	<div class="row">
+		<div
+			class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+			<form role="form">
+				<h2>Ajouter votre Idée</h2>
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<form:input path="title" type="text" id="title"
+								class="form-control input-lg" placeholder="Titre" tabindex="1" />
+						</div>
 					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-						<form:input path="content" type="text" id="content"
-							class="form-control input-lg" placeholder="Contenu" tabindex="2" />
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-						<form:input path="picture" type="text" id="picture"
-							class="form-control input-lg" placeholder="Entrer l'URL"
-							tabindex="3" />
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<form:select class="custom-select" path="category">
-						<c:forEach items="${categoryList}" var="category">
-							<form:option value="${category}">${category}</form:option>
-						</c:forEach>
-					</form:select>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-						<div class="popup" onclick="myFunction()">
-							<i class="fas fa-info"></i><span class="popuptext" id="myPopup">Si
-								votre photo ce situe dans votre ordinateur, veuillez vous rendre
-								sur le site https://www.casimages.com/ pour héberger votre image
-								en ligne.</span>
-							<script>
-								function myFunction() {
-									var popup = document
-											.getElementById("myPopup");
-									popup.classList.toggle("show");
-								}
-							</script>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<form:input path="content" type="text" id="content"
+								class="form-control input-lg" placeholder="Contenu" tabindex="2" />
 						</div>
 					</div>
 				</div>
-			</div>
-		</form>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<form:input path="picture" type="text" id="picture"
+								class="form-control input-lg" placeholder="Entrer l'URL"
+								tabindex="3" />
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<form:select class="custom-select" path="category">
+							<c:forEach items="${categoryList}" var="category">
+								<form:option value="${category}">${category}</form:option>
+							</c:forEach>
+						</form:select>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<div class="popup" onclick="myFunction()">
+								<i class="fas fa-info"></i><span class="popuptext" id="myPopup">Si
+									votre photo ce situe dans votre ordinateur, veuillez vous
+									rendre sur le site https://www.casimages.com/ pour héberger
+									votre image en ligne.</span>
+								<script>
+									function myFunction() {
+										var popup = document
+												.getElementById("myPopup");
+										popup.classList.toggle("show");
+									}
+								</script>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
-</div>
-<div align="left">
-	<a href="#" class="btn btn-primary btn-lg active btn-sm" role="button"
-		aria-pressed="true" data-dismiss="modal"><i
-		class="fas fa-plus-circle"></i> </a>
-</div>
+	<div align="left">
+		<div class="col-xs-12 col-md-6">
+		<form:button type="submit" class="btn btn-primary btn-lg active">ADD</form:button>
+			<!-- <button type="submit" class="btn btn-primary btn-lg active"
+				value="add">Ajouter</button> -->
+		</div>
+	</div>
 </form:form>
 
 <jsp:include page="include/footer.jsp"></jsp:include>
