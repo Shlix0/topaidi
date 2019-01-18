@@ -67,13 +67,10 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Acceuil
+					<li class="nav-item active"><a class="nav-link" href="/topaidi/ideas/home">Accueil
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Tops</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Brains</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Buzz</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Flops</a></li>
+					<li class="nav-item"><a class="nav-link" href="/topaidi/classements/home">Classements</a></li>
 				</ul>
 	<!-- -------------------------------------- MODAL LOGIN ----------------------------------------------------  -->
 	

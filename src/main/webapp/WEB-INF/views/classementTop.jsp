@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
 <jsp:include page="include/header.jsp"></jsp:include>
 
 <!-- Custom styles for this template -->
@@ -39,12 +40,12 @@
 						<tr>
 							<td>
 								<c:set var="count" value="${count + 1}"/>
-								${count}
+									${count}
 							</td>
 							<td>${idea.title}</td>
 							<td>${idea.category.title}</td>
 							<td>${idea.content}</td>
-							<td></td>
+							<td>${fn:length(idea.usersVoteTop)}</td>
 							<td>
 <!-- 								Button trigger modal -->
 								<div align="center">
@@ -90,11 +91,11 @@
 																<i class="fas fa-user-slash"></i>
 															</a> <a href="/topaidi/ideas/${idea.id}/addVoteTop"
 																class="btn btn-primary btn-lg active" role="button"><i
-																class="fas fa-thumbs-up"></i></a><span> nb Vote </span> <a
+																class="fas fa-thumbs-up"></i></a><span> ${fn:length(idea.usersVoteTop)} </span> <a
 																href="/topaidi/ideas/${idea.id}/addVoteFlop"
 																class="btn btn-primary btn-lg active" role="button"
 																aria-pressed="true"><i class="fas fa-thumbs-down"></i></a><span>
-																nb Vote</span>
+																${fn:length(idea.usersVoteFlop)}</span>
 														</div>
 
 														<div class="titleBox">
