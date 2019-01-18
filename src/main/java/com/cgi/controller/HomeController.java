@@ -89,7 +89,9 @@ public class HomeController {
 		User user = (User) session.getAttribute("user");
 
 		if (user != null && user.getRole().getName().equals("utilisateur") && user.isActivated()) {
-
+			if(idea.getPicture().equals("")) {
+				idea.setPicture("https://www.limeblogue.ca/wp-content/uploads/2015/11/bonne_idee_partir_en_affaires.png");
+			}
 			idea.setUser(user);
 			iDao.add(idea);
 
