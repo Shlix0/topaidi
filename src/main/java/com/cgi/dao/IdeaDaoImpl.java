@@ -130,7 +130,9 @@ public class IdeaDaoImpl implements IdeaDao {
 		
 		List<Idea> ideasR = new ArrayList<Idea>();
 		for(Idea i : ideas) {
-			if (i.getUsersReport().size() < 0) ideasR.add(i);
+			if (i.getUsersReport().size() < 0) {
+				ideasR.add(i);
+			}
 
 		}
 		return ideasR;

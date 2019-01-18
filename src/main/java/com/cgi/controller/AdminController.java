@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -80,11 +81,10 @@ public class AdminController {
 //		}
 	}
 	
-	@PostMapping("/processActivated")
-	public String activateUser (@ModelAttribute("user") User user, Model model, HttpSession session) {
+	@PostMapping("{idUser}/processActivated")
+	public String activateUser (@PathVariable(value = "idUser") Long idUser, Model model, HttpSession session) {
 
-//		User user = (User) session.getAttribute("user");
-//
+		User user = uDao.findByKey(idUser);
 //		if (user != null && user.getRole().getName().equals("administrateur")) {
 
 		user.setActivated(true);
