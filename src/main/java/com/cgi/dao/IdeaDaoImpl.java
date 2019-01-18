@@ -15,6 +15,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.test.annotation.IfProfileValue;
 
 import com.cgi.model.Idea;
 import com.cgi.model.User;
@@ -80,18 +81,19 @@ public class IdeaDaoImpl implements IdeaDao {
 
 	
         List<Idea> sorted = ideas.stream().sorted(Comparator
-        		.<Idea, Integer>comparing((l1) -> (l1.getUsersVoteTop().size() / (l1.getUsersVoteTop().size() + l1.getUsersVoteFlop().size()))*100)
+        		.<Idea, Integer>comparing((l1) -> (l1.getUsersVoteTop().size() / (l1.getUsersVoteTop().size() + l1.getUsersVoteFlop().size() +1 ))*100)
                 .thenComparing((l1) -> l1.getUsersVoteTop().size())
                 .thenComparing((l1) -> l1.getCreationDate()))
                 .collect(Collectors.toList());
 		
 		
 		Collections.reverse(sorted);
-		List<Idea> Top = new ArrayList<Idea>();
-		for(int i=0; i<10 ; i++) {
-			Top.add(sorted.get(i));
+		if (sorted.size() > 10) {
+			sorted.subList(0, 9);
+			
 		}
-		return Top;
+
+		return sorted;
 
 	}
 
@@ -109,12 +111,13 @@ public class IdeaDaoImpl implements IdeaDao {
 		
         
         Collections.reverse(sorted);
-		List<Idea> buzz = new ArrayList<Idea>();
-		for(int i=0; i<10 ; i++) {
-			buzz.add(sorted.get(i));
+		
+		if (sorted.size() > 10) {
+			sorted.subList(0, 9);
+			
 		}
 		
-		return buzz;
+		return sorted;
 
 
 	}

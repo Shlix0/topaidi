@@ -69,7 +69,7 @@ public class HomeController {
 	@GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("idea", new Idea());
-		
+		model.addAttribute("login", new Login());
 		model.addAttribute("categoryList", cDao.findAll());
 
 		return "addIdea";
@@ -145,16 +145,16 @@ public class HomeController {
 			Collection<Idea> ideasFlop = u2.getVoteFlop();
 			Collection<Idea> ideasUser = u2.getIdeas();
 
-			for (Idea iU : ideasUser) {
-				if (iU.getId() == idea.getId())
+			for (Idea i : ideasUser) {
+				if (i.getId() == idea.getId())
 					return "redirect:/ideas/home";
 			}
 			for (Idea i : ideasTop) {
 				if (i.getId() == idea.getId())
 					return "redirect:/ideas/home";
 			}
-			for (Idea i2 : ideasFlop) {
-				if (i2.getId() == idea.getId())
+			for (Idea i : ideasFlop) {
+				if (i.getId() == idea.getId())
 					return "redirect:/ideas/home";
 			}
 			u2.getVoteTop().add(idea);

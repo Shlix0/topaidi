@@ -51,8 +51,9 @@ public class UserController {
 
 	@GetMapping("/add")
 	public String add(Model model) {
+		model.addAttribute("login", new Login());
 		model.addAttribute("userLogin", new UserLogin());
-
+		model.addAttribute("user", new User());
 		return "inscription";
 	}
 

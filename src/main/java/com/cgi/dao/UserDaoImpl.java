@@ -78,11 +78,11 @@ public class UserDaoImpl implements UserDao {
 	                .collect(Collectors.toList());
 		 Collections.reverse(sorted);	
 		 
-			List<User> brain = new ArrayList<User>();
-			for(int i=0; i<10 ; i++) {
-				brain.add(sorted.get(i));
+			if (sorted.size() > 10) {
+				sorted.subList(0, 9);
+				
 			}
-		return brain;
+		return sorted;
 		
 		}
 

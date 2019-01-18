@@ -30,10 +30,8 @@ public class TestCategoryDaoImpl {
 	
 	@Test
 	public void testFindAll() {
-		
 		Collection<Category> categories = cDao.findAll();
 		assertNotNull(categories);
-		 
 		}
 	
 
