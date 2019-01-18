@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
 <jsp:include page="include/header.jsp"></jsp:include>
@@ -41,11 +41,10 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:set var="count" value="0" />
 					<c:forEach items="${brainUser}" var="user">
 						<tr>
-							<td><c:forEach var="i" begin="1" end="${brainUser.size()}">
-									<c:out value="${i+1}" />
-								</c:forEach></td>
+							<td><c:set var="count" value="${count + 1}" /> ${count}</td>
 							<td>${user.lastName}</td>
 							<td></td>
 						</tr>
