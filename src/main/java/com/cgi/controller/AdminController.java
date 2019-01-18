@@ -43,7 +43,7 @@ public class AdminController {
 
 		User user = (User) session.getAttribute("user");
 
-		if (user != null && user.getRole().getId() == 2) {
+		if (user != null && user.getRole().getId() == 2L) {
 
 			model.addAttribute("user", new User());
 			model.addAttribute("login", new Login());
@@ -71,7 +71,7 @@ public class AdminController {
 
 		User user = (User) session.getAttribute("user");
 
-		if (user != null && user.getRole().getId() == 2) {
+		if (user != null && user.getRole().getId() == 2L) {
 
 		cDao.add(category);
 
@@ -83,9 +83,9 @@ public class AdminController {
 	
 	@GetMapping("{idUser}/processActivated")
 	public String activateUser (@PathVariable(value = "idUser") Long idUser, Model model, HttpSession session) {
-
+		User userSess = (User) session.getAttribute("user");
 		User user = uDao.findByKey(idUser);
-		if (user != null && user.getRole().getId() == 2) {
+		if (userSess != null && userSess.getRole().getId() == 2L) {
 
 		user.setActivated(true);
 		uDao.update(user);
