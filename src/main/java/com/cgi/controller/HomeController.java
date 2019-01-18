@@ -3,8 +3,12 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
@@ -53,9 +57,13 @@ public class HomeController {
 
 	@GetMapping("/home")
 	public String home(Model model) {
-		Collection<Idea> ideas = new HashSet<Idea>();
-		ideas = iDao.findAll();
-		model.addAttribute("ideaList", ideas);
+		Set<Idea> ideas = iDao.findAll();
+		List<Idea> ideasL = new ArrayList<Idea>();
+		ideasL.addAll(ideas);
+		ideas.stream().sorted((i1, i2) -> i1.getId().compareTo(i2.getId()));
+		ideasL =  ideas.stream().sorted((i1, i2) -> i1.getId().compareTo(i2.getId())).collect(Collectors.toList());
+		Collections.reverse(ideasL);
+		model.addAttribute("ideaList", ideasL);
 		Collection<Comment> comments = coDao.findAll();
 		model.addAttribute("commentList", comments);
 		model.addAttribute("comment", new Comment());
