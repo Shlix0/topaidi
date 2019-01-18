@@ -1,4 +1,4 @@
-	package com.cgi.controller;
+package com.cgi.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -61,7 +61,7 @@ public class HomeController {
 		List<Idea> ideasL = new ArrayList<Idea>();
 		ideasL.addAll(ideas);
 		ideas.stream().sorted((i1, i2) -> i1.getId().compareTo(i2.getId()));
-		ideasL =  ideas.stream().sorted((i1, i2) -> i1.getId().compareTo(i2.getId())).collect(Collectors.toList());
+		ideasL = ideas.stream().sorted((i1, i2) -> i1.getId().compareTo(i2.getId())).collect(Collectors.toList());
 		Collections.reverse(ideasL);
 		model.addAttribute("ideaList", ideasL);
 		Collection<Comment> comments = coDao.findAll();
@@ -82,24 +82,23 @@ public class HomeController {
 
 		return "addIdea";
 	}
-	
+
 	@PostMapping("/processAdd")
-	public String addIdea(@ModelAttribute("idea") Idea idea,
-            Model model, HttpSession session) {
-		
+	public String addIdea(@ModelAttribute("idea") Idea idea, Model model, HttpSession session) {
+
 		User user = (User) session.getAttribute("user");
-		
+
 		if (user != null && user.getRole().getName().equals("utilisateur") && user.isActivated()) {
 
 			idea.setUser(user);
 			iDao.add(idea);
-			
+
 			return "redirect:/ideas/home";
 		} else {
 			return "redirect:/ideas/home";
 		}
 	}
-	
+
 	@PostMapping("{idIdea}/addComment")
 	public String addComment(@PathVariable(value = "idIdea") Long id, Comment comment, Model model,
 			HttpSession session) {
@@ -127,10 +126,17 @@ public class HomeController {
 
 		User user = uDao.findByLogin(login.getMail(), login.getPassword());
 		if (user != null) {
+			if (user.getRole().getId() == 2) {
+				session.setAttribute("user", user);
+				return "redirect:/admin/home";
+			} else {
 
-			session.setAttribute("user", user);
-			return "redirect:/ideas/home";
-		} else {
+				session.setAttribute("user", user);
+				return "redirect:/ideas/home";
+			}
+
+		} 
+		else {
 			return "redirect:/ideas/home";
 		}
 	}
@@ -144,8 +150,8 @@ public class HomeController {
 	@GetMapping("{idIdea}/addVoteTop")
 	public String addVoteTopToIdea(@PathVariable(value = "idIdea") Long id, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		
-		if (user != null && user.getRole().getName().equals("utilisateur")) {
+
+		if (user != null && user.getRole().getId() == 1) {
 
 			Idea idea = iDao.findByKey(id);
 			User u2 = uDao.update(user);
@@ -179,8 +185,8 @@ public class HomeController {
 	public String addVoteflopToIdea(@PathVariable(value = "idIdea") Long id, Model model, HttpSession session) {
 
 		User user = (User) session.getAttribute("user");
-		
-		if (user != null && user.getRole().getName().equals("utilisateur")) {
+
+		if (user != null && user.getRole().getId() == 1) {
 
 			Idea idea = iDao.findByKey(id);
 			User u2 = uDao.update(user);
@@ -188,8 +194,6 @@ public class HomeController {
 			Collection<Idea> ideasFlop = u2.getVoteFlop();
 			Collection<Idea> ideasUser = u2.getIdeas();
 
-
-			
 			for (Idea iU : ideasUser) {
 				if (iU.getId() == idea.getId())
 					return "redirect:/ideas/home";
@@ -212,36 +216,35 @@ public class HomeController {
 			return "redirect:/ideas/home";
 		}
 	}
-	
+
 	@GetMapping("{idIdea}/addReport")
-		public String addReportToIdea(@PathVariable(value = "idIdea") Long id, Model model, HttpSession session) {
-		
+	public String addReportToIdea(@PathVariable(value = "idIdea") Long id, Model model, HttpSession session) {
+
 		User user = (User) session.getAttribute("user");
-		
-		if (user != null && user.getRole().getName().equals("utilisateur")) {
-			
+
+		if (user != null && user.getRole().getId() == 1) {
+
 			User u2 = uDao.update(user);
-			Idea idea = iDao.findByKey(id);	
+			Idea idea = iDao.findByKey(id);
 			Collection<Idea> ideasReported = u2.getIdeasReported();
-			
+
 //			
 //			if(ideasReported.stream()
 //					.filter(i -> i.getId() == idea.getId())
 //					.findFirst().isPresent()) {
 //				System.out.println("YEAH INSIDE ");
 //			}
-			
+
 			for (Idea i : ideasReported) {
 				if (i.getId() == idea.getId())
 					return "redirect:/ideas/home";
 			}
-			
+
 			u2.getIdeasReported().add(idea);
 			uDao.update(u2);
-				return "redirect:/ideas/home";
-			}
-		else {
-			
+			return "redirect:/ideas/home";
+		} else {
+
 			return "redirect:/ideas/home";
 		}
 	}
