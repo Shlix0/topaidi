@@ -66,7 +66,7 @@ public class ClassementController {
 
 		model.addAttribute("user", new User());
 		model.addAttribute("login", new Login());
-		model.addAttribute("brainIdea", uDao.getBrainUsers());
+		model.addAttribute("brainUser", uDao.getBrainUsers());
 		
 		return "classementBrain";
 	}

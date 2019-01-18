@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <jsp:include page="include/header.jsp"></jsp:include>
 
 <!-- Custom styles for this template -->
-<link href="classementBrainStyle.css" rel="stylesheet">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/views/classementBrainStyle.css" />   --%>
 
 <style>
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next
@@ -17,6 +19,7 @@
 	{
 	margin-left: -71px;
 }
+<%@include file="/WEB-INF/views/classementBrainStyle.css"%>
 </style>
 
 <div class="row">
@@ -38,10 +41,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${artisteList}" var="aL">
+					<c:forEach items="${brainUser}" var="user">
 						<tr>
-							<td></td>
-							<td></td>
+							<td><c:forEach var="i" begin="1" end="${brainUser.size()}">
+									<c:out value="${i+1}" />
+								</c:forEach></td>
+							<td>${user.lastName}</td>
 							<td></td>
 						</tr>
 					</c:forEach>
