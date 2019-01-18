@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+body {
+	padding-top: 54px;
+}
+
+@media ( min-width : 992px) {
+	body {
+		padding-top: 56px;
+	}
+}
+
+.portfolio-item {
+	margin-bottom: 30px;
+}
+
+.pagination {
+	margin-bottom: 30px;
+}
+
+.card {
+	height: 100%;
+}
+
+
+.modal.fade {
+	color: black !important;
+}
+
+.fas.fa-medal{
+	color: #FFD700 !important;
+}
+
+.card-body {
+	font-family: Times New Roman !important;
+	/* 	font-size:10; */
+}
+
+.btn.btn-primary.btn-lg.active {
+	color: blue !important;
+	background: transparent;
+	border: 0px solid transparent;
+}
+
+.date.sub-text {
+	font-size: 12px;
+}
+
+.modal.fade {
+	color: Black !important;
+}

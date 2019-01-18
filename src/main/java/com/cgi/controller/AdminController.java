@@ -43,7 +43,7 @@ public class AdminController {
 
 		User user = (User) session.getAttribute("user");
 
-//		if (user != null && user.getRole().getName().equals("administrateur")) {
+		if (user != null && user.getRole().getId() == 2) {
 
 			model.addAttribute("user", new User());
 			model.addAttribute("login", new Login());
@@ -53,9 +53,9 @@ public class AdminController {
 			
 			return "pageAdmin";
 
-//		} else {
-//			return "redirect:/ideas/home";
-//		}
+		} else {
+			return "redirect:/ideas/home";
+		}
 	}
 
 	@GetMapping("/add")
@@ -69,30 +69,30 @@ public class AdminController {
 	@PostMapping("/processAdd")
 	public String addCategory(@ModelAttribute("category") Category category, Model model, HttpSession session) {
 
-//		User user = (User) session.getAttribute("user");
-//
-//		if (user != null && user.getRole().getName().equals("administrateur")) {
+		User user = (User) session.getAttribute("user");
+
+		if (user != null && user.getRole().getId() == 2) {
 
 		cDao.add(category);
 
 			return "redirect:/admin/home";
-//		} else {
-//			return "redirect:/ideas/home";
-//		}
+		} else {
+			return "redirect:/ideas/home";
+		}
 	}
 	
-	@PostMapping("{idUser}/processActivated")
+	@GetMapping("{idUser}/processActivated")
 	public String activateUser (@PathVariable(value = "idUser") Long idUser, Model model, HttpSession session) {
 
 		User user = uDao.findByKey(idUser);
-//		if (user != null && user.getRole().getName().equals("administrateur")) {
+		if (user != null && user.getRole().getId() == 2) {
 
 		user.setActivated(true);
 		uDao.update(user);
 		
 			return "redirect:/admin/home";
-//		} else {
-//			return "redirect:/ideas/home";
-//		}
+		} else {
+			return "redirect:/ideas/home";
+		}
 	}
 }

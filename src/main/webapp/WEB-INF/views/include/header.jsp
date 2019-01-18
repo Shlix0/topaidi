@@ -67,6 +67,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="/topaidi/admin/home">Administrateur</a></li>
 					<li class="nav-item active"><a class="nav-link" href="/topaidi/ideas/home">Accueil
 							<span class="sr-only">(current)</span>
 					</a></li>
