@@ -50,6 +50,11 @@ body {
 	border: 0px solid transparent;
 }
 
+.btn.btn-primary.btn-lg.active.b {
+	color: white !important;
+	background: #0080ff;
+}
+
 .formLogin {
 	padding: 15px;
 	min-width: 300px;
@@ -68,13 +73,21 @@ body {
 .titleBox span {
 	align: center;
 }
+
 .nav.navbar-nav.navbar-right li a {
 	color: #A9A9A9;
 }
 
 .dropdown-menu.dropdown-menu-right {
-	 margin-top: 15px !important;
+	margin-top: 15px !important;
 }
-/* .label.NameUser{ */
-/* 	color: dark; */
-/* } */
+
+.lead {
+	padding-right: 126px;
+	padding-left: 126px;
+}
+
+
+
+
+

@@ -15,10 +15,10 @@
 				<div class="perso">
 					<div class="card-body">
 						<h4 class="card-title" align="center">
-							<a>Titre : ${idea.title}</a>
+							<a><span style="text-decoration: underline;">Titre :</span> ${idea.title}</a>
 						</h4>
-						<p>Catégory : ${idea.category.title}</p>
-						<p>Auteur : ${idea.user.firstName} ${idea.user.lastName} </p>
+						<p align="center"> <span style="text-decoration: underline;"> Catégorie :</span> ${idea.category.title}</p>
+						<p align="center"> <span style="text-decoration: underline;">Auteur :</span> ${idea.user.firstName} ${idea.user.lastName} </p>
 						<!-- Button trigger modal -->
 						<div align="center">
 							<button type="button" class="btn btn-primary" data-toggle="modal"

@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -51,6 +51,7 @@
 	{
 	margin-left: -71px;
 }
+<%@include file="/WEB-INF/views/accueilStyle.css"%>
 </style>
 
 </head>
@@ -120,7 +121,7 @@
 						</div></li>
 						</c:when>
 						<c:otherwise>
-						<a  href="/topaidi/ideas/loggout"class="btn btn-danger btn-sm">Deconnexion</a>
+						<a  href="/topaidi/ideas/loggout" class="btn btn-danger btn-sm"><i class="fas fa-power-off"></i></a>
 						</c:otherwise>
 		</c:choose>
 							
@@ -136,14 +137,13 @@
 		<!-- Jumbotron Header -->
 		<header class="jumbotron my-4">
 			<h1 class="display-3" align="center">BIENVENUE SUR TOPAIDI !</h1>
-			<p class="lead" align="justify">Haut lieu de rassemblement
+			<p class="lead" align="justify"  >Haut lieu de rassemblement
 				francophones des inventeurs, le site Topaidi symbolise toute
-				l’essence et l’étendue du concept d’invention en France. Curieux et
+				l&rsquo;essence et l&rsquo;étendue du concept d&rsquo;invention en France. Curieux et
 				professionnels, aux enjeux divers et variés, se rendent chaque année
 				ici pour y découvrir les inventions de demain !</p>
 			<div align="center">
-			
-				<a href="/topaidi/ideas/add" class="btn btn-primary btn-lg active" role="button"
+				<a href="/topaidi/ideas/add" class="btn btn-primary btn-lg active b" role="button"
 					aria-pressed="true" >Nouvelle idée <i class="fas fa-lightbulb"></i></a>
 			</div>
 		</header>

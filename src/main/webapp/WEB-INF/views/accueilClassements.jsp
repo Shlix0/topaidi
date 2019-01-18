@@ -17,6 +17,7 @@
 	{
 	margin-left: -71px;
 }
+<%@include file="/WEB-INF/views/acceuilClassementsStyle.css"%>
 </style>
 
 <br>
