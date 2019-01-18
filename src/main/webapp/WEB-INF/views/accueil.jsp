@@ -58,15 +58,13 @@
 												<div align="center">
 													<a href="/topaidi/ideas/${idea.id}/addReport" class="btn btn-primary btn-lg active" role="button" >
 														<i class="fas fa-exclamation-circle"></i></a><span> ${fn:length(idea.usersReport)}</span>
-													 <a href="/topaidi/ideas/${idea.id}/addReport" class="btn btn-primary btn-lg active" role="button">
-														<i	class="fas fa-user-slash"></i></a>
 													  <a href="/topaidi/ideas/${idea.id}/addVoteTop"
 														class="btn btn-primary btn-lg active" role="button"><i
-														class="fas fa-thumbs-up"></i></a><span> nb Vote </span>
+														class="fas fa-thumbs-up"></i></a><span> ${fn:length(idea.usersVoteTop)} </span>
 														 <a href="/topaidi/ideas/${idea.id}/addVoteFlop"
 														class="btn btn-primary btn-lg active" role="button"
 														aria-pressed="true"><i
-														class="fas fa-thumbs-down"></i></a><span> nb Vote</span>
+														class="fas fa-thumbs-down"></i></a><span> ${fn:length(idea.usersVoteFlop)}</span>
 												</div>
 
  												<div class="titleBox">
