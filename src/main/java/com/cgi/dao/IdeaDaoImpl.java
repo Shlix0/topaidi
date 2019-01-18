@@ -127,9 +127,10 @@ public class IdeaDaoImpl implements IdeaDao {
 	public List<Idea> getReportedIdeas() {
 
 		List<Idea> ideas = em.createQuery("from Idea i").getResultList();
+		
 		List<Idea> ideasR = new ArrayList<Idea>();
 		for(Idea i : ideas) {
-			if (i.getUsersReport().size() > 0) ideas.add(i);
+			if (i.getUsersReport().size() > 0) ideasR.add(i);
 
 		}
 		return ideasR;
