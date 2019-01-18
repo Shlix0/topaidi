@@ -51,7 +51,6 @@
 							</td>
 							<td>${idea.title}</td>
 							<td>${idea.category.title}</td>
-							<td>${idea.content}</td>
 							<td>${fn:length(idea.usersVoteTop)}</td>
 							<td>
 <!-- 								Button trigger modal -->
