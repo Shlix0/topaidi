@@ -87,7 +87,7 @@
 	<div align="left">
 		<div class="col-xs-12 col-md-6">
 		<button type="submit" id="btnLogin"
-										class="btn btn-success btn-sm">Connexion</button>
+										class="btn btn-success btn-sm">Ajouter l'idée</button>
 	<%-- 	<form:button type="submit" class="btn btn-primary btn-lg active">ADD</form:button> --%>
 			<!-- <button type="submit" class="btn btn-primary btn-lg active"
 				value="add">Ajouter</button> -->
