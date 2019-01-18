@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -137,9 +138,9 @@ public class TestIdeaDaoImpl {
 		idea1 = new Idea(); // 1
 		Idea idea2 = new Idea(); // 1
 		
-		Collection<User> userVoteTopIdea0 = idea.getUsersVoteTop();
-		Collection<User> userVoteTopIdea1 = idea1.getUsersVoteTop();
-		Collection<User> userVoteTopIdea2 = idea2.getUsersVoteTop();
+		Set<User> userVoteTopIdea0 = (Set<User>) idea.getUsersVoteTop();
+		Set<User> userVoteTopIdea1 = (Set<User>) idea1.getUsersVoteTop();
+		Set<User> userVoteTopIdea2 = (Set<User>) idea2.getUsersVoteTop();
 		
 		User user = new User();
 		uDao.add(user);
@@ -180,13 +181,13 @@ public class TestIdeaDaoImpl {
 		idea1 = new Idea(); 
 		Idea idea2 = new Idea(); 
 		
-		Collection<User> userVoteTopIdea0 = idea.getUsersVoteTop();
-		Collection<User> userVoteTopIdea1 = idea1.getUsersVoteTop();
-		Collection<User> userVoteTopIdea2 = idea2.getUsersVoteTop();
+		Set<User> userVoteTopIdea0 = (Set<User>) idea.getUsersVoteTop();
+		Set<User> userVoteTopIdea1 = (Set<User>)idea1.getUsersVoteTop();
+		Set<User> userVoteTopIdea2 = (Set<User>)idea2.getUsersVoteTop();
 		
-		Collection<User> userVoteFlopIdea0 = idea.getUsersVoteFlop();
-		Collection<User> userVoteFlopIdea1 = idea1.getUsersVoteFlop();
-		Collection<User> userVoteFlopIdea2 = idea2.getUsersVoteFlop();
+		Set<User> userVoteFlopIdea0 = (Set<User>)idea.getUsersVoteFlop();
+		Set<User> userVoteFlopIdea1 = (Set<User>)idea1.getUsersVoteFlop();
+		Set<User> userVoteFlopIdea2 = (Set<User>)idea2.getUsersVoteFlop();
 		
 		User user = new User();
 		uDao.add(user);
@@ -232,7 +233,7 @@ public class TestIdeaDaoImpl {
 		
 		idea = new Idea();
 		User user = new User();
-		Collection<User> usersReportIdea = idea.getUsersReport();
+		Set<User> usersReportIdea = (Set<User>)idea.getUsersReport();
 		usersReportIdea.add(user);
 		idea.setUsersReport(usersReportIdea);
 		iDao.add(idea);

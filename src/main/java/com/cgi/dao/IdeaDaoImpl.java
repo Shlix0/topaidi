@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -136,7 +137,7 @@ public class IdeaDaoImpl implements IdeaDao {
 		
 		System.out.println(user.getVoteTop().contains(idea));
 		
-		Collection<User> usersVoteTop = idea.getUsersVoteTop();
+		Set<User> usersVoteTop = (Set<User>) idea.getUsersVoteTop();
 		usersVoteTop.add(user);
 		idea.setUsersVoteTop(usersVoteTop);
 		em.merge(idea);

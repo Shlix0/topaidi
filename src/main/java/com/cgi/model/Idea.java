@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,16 +39,16 @@ public class Idea {
 	private User user;
 	
 	@ManyToMany(mappedBy="ideasReported", fetch=FetchType.EAGER)
-	private Collection<User> usersReport = new HashSet<User>();
+	private Set<User> usersReport = new HashSet<User>();
 	
-	@ManyToMany(mappedBy="voteTop" )
-	private Collection<User> usersVoteTop = new HashSet<User>();
+	@ManyToMany(mappedBy="voteTop" , fetch=FetchType.EAGER )
+	private Set<User> usersVoteTop = new HashSet<User>();
 	
-	@ManyToMany(mappedBy="voteFlop"  )
-	private Collection<User> usersVoteFlop = new HashSet<User>();
+	@ManyToMany(mappedBy="voteFlop" , fetch=FetchType.EAGER  )
+	private Set<User> usersVoteFlop = new HashSet<User>();
 	
 	@OneToMany(mappedBy="idea", fetch=FetchType.EAGER)
-	private Collection<Comment> comments = new HashSet<Comment>(); ;
+	private Set<Comment> comments = new HashSet<Comment>(); ;
 
 	public Idea() {
 	}
@@ -88,8 +89,8 @@ public class Idea {
 	}
 
 	public Idea(Long id, String title, String picture, String content, Date creationDate, LocalDate finishVotableDate,
-			Boolean votable, Boolean enable, Category category, User user, Collection<User> usersReport,
-			Collection<User> usersVoteTop, Collection<User> usersVoteFlop, Collection<Comment> comments) {
+			Boolean votable, Boolean enable, Category category, User user, Set<User> usersReport,
+			Set<User> usersVoteTop, Set<User> usersVoteFlop, Set<Comment> comments) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -191,7 +192,7 @@ public class Idea {
 		return usersReport;
 	}
 
-	public void setUsersReport(Collection<User> usersReport) {
+	public void setUsersReport(Set<User> usersReport) {
 		this.usersReport = usersReport;
 	}
 
@@ -199,7 +200,7 @@ public class Idea {
 		return usersVoteTop;
 	}
 
-	public void setUsersVoteTop(Collection<User> usersVoteTop) {
+	public void setUsersVoteTop(Set<User> usersVoteTop) {
 		this.usersVoteTop = usersVoteTop;
 	}
 
@@ -207,7 +208,7 @@ public class Idea {
 		return usersVoteFlop;
 	}
 
-	public void setUsersVoteFlop(Collection<User> usersVoteFlop) {
+	public void setUsersVoteFlop(Set<User> usersVoteFlop) {
 		this.usersVoteFlop = usersVoteFlop;
 	}
 
@@ -215,7 +216,7 @@ public class Idea {
 		return comments;
 	}
 
-	public void setComments(Collection<Comment> comments) {
+	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
 	
