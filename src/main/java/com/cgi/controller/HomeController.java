@@ -126,20 +126,16 @@ public class HomeController {
 
 		User user = uDao.findByLogin(login.getMail(), login.getPassword());
 		if (user != null) {
-			if (user.getRole().getId() == 2) {
-				session.setAttribute("user", user);
-				return "redirect:/admin/home";
-			} else {
 
 				session.setAttribute("user", user);
 				return "redirect:/ideas/home";
 			}
 
-		} 
 		else {
 			return "redirect:/ideas/home";
 		}
-	}
+		} 
+	
 
 	@GetMapping("/loggout")
 	public String loggout(Model model, HttpSession session) {
