@@ -56,8 +56,7 @@ public class HomeController {
 		Collection<Idea> ideas = new HashSet<Idea>();
 		ideas = iDao.findAll();
 		model.addAttribute("ideaList", ideas);
-		List<Comment> comments = coDao.findAll();
-		Collections.reverse(comments);
+		Collection<Comment> comments = coDao.findAll();
 		model.addAttribute("commentList", comments);
 		model.addAttribute("comment", new Comment());
 		model.addAttribute("user", new User());

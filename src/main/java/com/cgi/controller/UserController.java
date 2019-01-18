@@ -1,5 +1,6 @@
 package com.cgi.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,10 @@ public class UserController {
 	@GetMapping("")
 	public String home(Model model) {
 
-		List<User> users = uDao.findAll();
+		Collection<User> users = uDao.findAll();
 		model.addAttribute("userList", users);
 		model.addAttribute("user", new User());
-		List<Login> logins = lDao.findAll();
+		Collection<Login> logins = lDao.findAll();
 		model.addAttribute("loginList", logins);
 		model.addAttribute("login", new Login());
 

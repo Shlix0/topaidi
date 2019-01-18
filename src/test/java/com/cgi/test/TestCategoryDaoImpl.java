@@ -2,6 +2,7 @@ package com.cgi.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Collection;
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -30,7 +31,7 @@ public class TestCategoryDaoImpl {
 	@Test
 	public void testFindAll() {
 		
-		List<Category> categories = cDao.findAll();
+		Collection<Category> categories = cDao.findAll();
 		assertNotNull(categories);
 		 
 		}
