@@ -57,3 +57,8 @@ tr:nth-child(3) {
 .date.sub-text {
 	font-size: 12px;
 }
+
+h5.modal-title{
+margin-left: 95px;
+margin-right: 10px;
+}

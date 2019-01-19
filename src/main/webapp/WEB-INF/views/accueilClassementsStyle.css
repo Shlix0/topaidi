@@ -22,16 +22,13 @@ body {
 	height: 100%;
 }
 
-.carousel-control-prev {
-	color: black;
-}
-
-.carousel-control-next {
-	color: black;
+.btn.btn-primary.btn-lg.active{
+	color: #FFFFFF !important;
+	background-color: #0080ff !important;
 }
 
 .nav.navbar-nav.navbar-right li a {
-    color: #A9A9A9;
+    color: #FFFFFF;
 }
 
 .dropdown-menu.dropdown-menu-right {

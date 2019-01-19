@@ -4,9 +4,6 @@
 
 <jsp:include page="include/header.jsp"></jsp:include>
 
-<!-- Custom styles for this template -->
-<link href="acceuilClassementsStyle.css" rel="stylesheet">
-
 <style>
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next
 	{
@@ -17,7 +14,7 @@
 	{
 	margin-left: -71px;
 }
-<%@include file="/WEB-INF/views/acceuilClassementsStyle.css"%>
+<%@include file="/WEB-INF/views/accueilClassementsStyle.css"%>
 </style>
 
 <br>

@@ -10,6 +10,11 @@ body {
 	}
 }
 
+h5.modal-title{
+margin-left: 80px;
+margin-right: 10px;
+}
+
 .portfolio-item {
 	margin-bottom: 30px;
 }
@@ -75,7 +80,7 @@ body {
 }
 
 .nav.navbar-nav.navbar-right li a {
-	color: #A9A9A9;
+	color: #FFFFFF;
 }
 
 .dropdown-menu.dropdown-menu-right {
@@ -87,7 +92,9 @@ body {
 	padding-left: 126px;
 }
 
-
+.form-control.b {
+	width:150px
+}
 
 
 

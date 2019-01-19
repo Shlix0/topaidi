@@ -14,6 +14,16 @@ body, html {
 	}
 }
 
+.btn.btn-custom{
+	color: #FFFFFF !important;
+	background-color: #0080ff !important;
+}
+
+.btn.btn-default.pull-left {
+	height:0px;
+    width:10px;
+}
+
 .portfolio-item {
 	margin-bottom: 30px;
 }
@@ -27,7 +37,7 @@ body, html {
 }
 
 .nav.navbar-nav.navbar-right li a {
-	color: #A9A9A9;
+	color: #FFFFFF;
 }
 
 .dropdown-menu.dropdown-menu-right {
@@ -115,3 +125,4 @@ keyframes fadeIn {
 to {
 	opacity: 1;
 }
+

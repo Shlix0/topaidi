@@ -46,7 +46,7 @@
 						<tr>
 							<td><c:set var="count" value="${count + 1}" /> ${count}</td>
 							<td>${user.lastName}</td>
-							<td></td>
+							<td>${fn:length(user.getIdeas())}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

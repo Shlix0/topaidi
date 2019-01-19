@@ -54,6 +54,13 @@
 <%@include file="/WEB-INF/views/accueilStyle.css"%>
 </style>
 
+<script>
+	function myFunction() {
+		var popup = document.getElementById("myPopup");
+		popup.classList.toggle("show");
+	}
+</script>
+
 </head>
 <body>
 
@@ -68,18 +75,18 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="/topaidi/admin/home">Administrateur</a></li>
+				<li class="nav-item active"><a class="nav-link" href="/topaidi/admin/home">Administrateur</a></li>
 					<li class="nav-item active"><a class="nav-link" href="/topaidi/ideas/home">Accueil
-							<span class="sr-only">(current)</span>
+							
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="/topaidi/classements/home">Classements</a></li>
+					<li class="nav-item active"><a class="nav-link" href="/topaidi/classements/home">Classements</a></li>
 				</ul>
 	<!-- -------------------------------------- MODAL LOGIN ----------------------------------------------------  -->
 	
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown "><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button"> Connexion<span
 							class="caret"></span>
 					</a>

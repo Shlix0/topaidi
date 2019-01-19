@@ -38,7 +38,7 @@
 						<th scope="col">Titre</th>
 						<th scope="col">Catégorie</th>
 						<th scope="col">Note</th>
-						<th scope="col">Nombre de votes</th>
+						<th scope="col">L'idée</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -65,8 +65,7 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title" id="exampleModalLongTitle"
-													align="center">${idea.title}/${idea.category.title}/
-													${idea.user.firstName} / ${idea.user.lastName}</h5>
+													>${idea.title} - ${idea.category.title} - ${idea.user.firstName} ${idea.user.lastName}</h5>
 
 												<button type="button" class="close" data-dismiss="modal"
 													aria-label="Close">
@@ -82,20 +81,15 @@
 															<h4 class="card-title" align="center">
 																<a>${idea.title}</a>
 															</h4>
-															<p class="card-text" align="justify">${idea.content}</p>
-															<span class="date sub-text">${idea.creationDate}</span>
+															<p class="card-text" align="justify">${idea.content} <br> <span class="date sub-text"> ${idea.creationDate} </span></p>
 														</div>
 														<div align="center">
 															<a href="/topaidi/ideas/${idea.id}/addReport"
 																class="btn btn-primary btn-lg active" role="button">
 																<i class="fas fa-exclamation-circle"></i>
-															</a>
-															<span> ${fn:length(idea.usersReport)}</span>
-															 <a
-																href="/topaidi/ideas/${idea.id}/addReport"
-																class="btn btn-primary btn-lg active" role="button">
-																<i class="fas fa-user-slash"></i>
-															</a> <a href="/topaidi/ideas/${idea.id}/addVoteTop"
+															</a><span> ${fn:length(idea.usersReport)}</span>
+<!-- 																<i class="fas fa-user-slash"></i> -->
+															 <a href="/topaidi/ideas/${idea.id}/addVoteTop"
 																class="btn btn-primary btn-lg active" role="button"><i
 																class="fas fa-thumbs-up"></i></a><span> ${fn:length(idea.usersVoteTop)} </span> <a
 																href="/topaidi/ideas/${idea.id}/addVoteFlop"
@@ -104,7 +98,7 @@
 																${fn:length(idea.usersVoteFlop)}</span>
 														</div>
 
-														<div class="titleBox">
+														<div class="titleBox" align="left">
 															<label><i class="far fa-comment"></i>
 																Commentaires </label>
 <%-- 															<form:form method="POST" action="${idea.id}/addComment" --%>
@@ -121,7 +115,7 @@
 <%-- 															</form:form> --%>
 															<c:forEach items="${idea.comments}" var="comment">
 																<p>${comment.user.firstName}
-																	${comment.user.lastName} : <br> ${comment.title}
+																	${comment.user.lastName} : ${comment.title}
 																	${comment.content}
 																</p>
 															</c:forEach>

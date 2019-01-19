@@ -10,6 +10,11 @@ body {
 	}
 }
 
+.btn.btn-primary.btn-lg.active.a {
+	color: #FFFFFF !important;
+	background-color: #0080ff !important;
+}
+
 .portfolio-item {
 	margin-bottom: 30px;
 }
@@ -34,6 +39,12 @@ body {
 .card-body {
 	font-family: Times New Roman !important;
 	/* 	font-size:10; */
+}
+
+.btn.btn-custom{
+	color: #FFFFFF !important;
+	background-color: #0080ff !important;
+	align: center !important;
 }
 
 .btn.btn-primary.btn-lg.active {
