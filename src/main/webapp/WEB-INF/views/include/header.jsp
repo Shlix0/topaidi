@@ -24,7 +24,8 @@
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
-
+<link rel="stylesheet" type="text/css"
+	href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -37,9 +38,6 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 	crossorigin="anonymous"></script>
-
-<!-- Custom styles for this template -->
-<link href="acceuilStyle.css" rel="stylesheet">
 
 <style>
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next

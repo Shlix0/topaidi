@@ -55,10 +55,7 @@ tr:nth-child(3) {
 /* 	background: #A52A2A !important; */
 /* } */
 
-.card-body {
-	font-family: Times New Roman !important;
-	/* 	font-size:10; */
-}
+
 
 .btn.btn-primary.btn-lg.active {
 	color: blue !important;

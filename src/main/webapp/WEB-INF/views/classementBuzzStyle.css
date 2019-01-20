@@ -43,10 +43,6 @@ tr:nth-child(3) {
 	background: #A52A2A;
 	}
 
-.card-body {
-	font-family: Times New Roman !important;
-	/* 	font-size:10; */
-}
 
 .btn.btn-primary.btn-lg.active {
 	color: blue !important;
@@ -56,9 +52,4 @@ tr:nth-child(3) {
 
 .date.sub-text {
 	font-size: 12px;
-}
-
-h5.modal-title{
-margin-left: 95px;
-margin-right: 10px;
 }

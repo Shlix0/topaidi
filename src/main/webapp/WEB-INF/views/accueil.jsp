@@ -40,8 +40,8 @@
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLongTitle"
-											align="center">${idea.title}- ${idea.category.title} -
+										<h5 class="modal-title text-center" id="exampleModalLongTitle"
+											>${idea.title} - ${idea.category.title} -
 											${idea.user.firstName} ${idea.user.lastName}</h5>
 
 										<button type="button" class="close" data-dismiss="modal"
@@ -97,7 +97,7 @@
 													</form:form>
 													<c:forEach items="${idea.comments}" var="comment">
 														<p>${comment.user.firstName}
-															${comment.user.lastName} : ${comment.title}
+															${comment.user.lastName} : <br> ${comment.title}
 															${comment.content}
 														</p>
 													</c:forEach>

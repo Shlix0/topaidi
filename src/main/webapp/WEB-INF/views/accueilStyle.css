@@ -10,10 +10,6 @@ body {
 	}
 }
 
-h5.modal-title{
-margin-left: 80px;
-margin-right: 10px;
-}
 
 .portfolio-item {
 	margin-bottom: 30px;
@@ -44,10 +40,6 @@ margin-right: 10px;
 /* .card-body h4 a { Permet de gérer la couleur du titre des cards*/
 /* 	color: #FFFFFF !important; */
 /* } */
-.card-body {
-	font-family: Times New Roman !important;
-	/* 	font-size:10; */
-}
 
 .btn.btn-primary.btn-lg.active {
 	color: blue !important;
@@ -95,6 +87,3 @@ margin-right: 10px;
 .form-control.b {
 	width:150px
 }
-
-
-
